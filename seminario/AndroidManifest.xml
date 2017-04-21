@@ -22,5 +22,8 @@
         <!-- Descoberta Bluetooth (aluno) -->
         <activity android:name=".AlunoConfirmBluetooth" />
         
+        <!-- Disponibilidade para descoberta Bluetooth (professor) -->
+        <activity android:name=".ProfessorConfirmBluetooth" />
+        
     </application>
 </manifest>
