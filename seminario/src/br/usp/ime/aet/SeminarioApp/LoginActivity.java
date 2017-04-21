@@ -6,6 +6,7 @@ import android.widget.EditText;
 import android.view.View;
 import android.os.AsyncTask;
 import java.util.HashMap;
+import com.github.kevinsawicki.http.HttpRequest;
 import org.json.JSONObject;
 import android.util.Log;
 
@@ -28,9 +29,9 @@ public class LoginActivity extends Activity {
       pass = e_pass.getText().toString();
       
       if (getIntent().getStringExtra("tipo").equals("prof"))
-         url = "http://207.38.82.139:8001/login/teacher";
+         url = Consts.SERVIDOR + "login/teacher";
       else
-         url = "http://207.38.82.139:8001/login/student";
+         url = Consts.SERVIDOR + "login/student";
       
       Log.d(LOG, nusp + " " + pass);
       new LoginTask().execute();
@@ -40,6 +41,16 @@ public class LoginActivity extends Activity {
       @Override
       protected Void doInBackground(Void ... params) {
          try {
+				HashMap<String, String> data = new HashMap<String, String>();
+				data.put("nusp", nusp);
+				data.put("pass", pass);
+				String json = HttpRequest
+						.post(url)
+						.form(data)
+						.body();
+
+				JSONObject token = new JSONObject(json);
+				Log.d(LOG, token.getString("success"));
          }
          catch (Exception e) {
             Log.d(LOG, "\n\nDeu xabláu!", e);
