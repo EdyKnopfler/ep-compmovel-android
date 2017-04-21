@@ -10,6 +10,28 @@
        android:layout_height="wrap_content"
        android:text="@string/celular_prof"
        />
+   
+   <LinearLayout
+       android:id="@+id/nenhum_disp_encontrado"
+       android:orientation="vertical"
+       android:layout_width="fill_parent"
+       android:layout_height="wrap_content"
+       android:visibility="gone">
+      
+      <TextView
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:text="@string/nenhum_disp_encontrado"
+          />
+      
+      <Button
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:text="@string/tentar_novamente"
+          android:onClick="tentarNovamente"
+          />
+   
+   </LinearLayout>
 
    <ListView
        android:id="@+id/lista_dispositivos"

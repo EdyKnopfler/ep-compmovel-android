@@ -1,7 +1,6 @@
 package br.usp.ime.aet.SeminarioApp;
 
 import android.os.Bundle;
-import android.widget.Toast;
 import android.widget.TextView;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
@@ -21,8 +20,6 @@ public class ProfessorConfirmBluetooth extends TelaBluetooth {
    
    @Override
    protected void acaoBluetooth() {
-      Toast.makeText(this, "Ativando visibilidade Bluetooth...", 
-                     Toast.LENGTH_LONG).show();
       ativarVisibilidade();
    }
    
@@ -56,7 +53,8 @@ public class ProfessorConfirmBluetooth extends TelaBluetooth {
    }
    
    private void iniciarEscuta() {
-      ((TextView) findViewById(R.id.pronto_receber)).setText("Pronto para conectar alunos!");
+      ((TextView) findViewById(R.id.pronto_receber)).setText(
+            getResources().getString(R.string.esperando_alunos));
       // iniciar escuta do bicho aqui
    }
    

@@ -13,8 +13,12 @@ public class SeminarioApp extends Activity {
       setContentView(R.layout.main);
    }
    
-   public void outraTela(View v) {
-      Intent i = new Intent(this, AlunoConfirmBluetooth.class);
+   public void pagLogin(View v) {
+      Intent i = new Intent(this, LoginActivity.class);
+      
+      if (v == findViewById(R.id.professor)) i.putExtra("tipo", "prof");
+      else i.putExtra("tipo", "aluno");
+            
       startActivity(i);
    }
    

@@ -1,0 +1,13 @@
+package br.usp.ime.aet.SeminarioApp;
+
+public class ThreadEscutaProfessor implements Runnable {
+
+   // Para o módulo do aluno informar na conexão
+   public static final String uuid = "67186568-26ad-11e7-93ae-92361f002671";
+   
+   @Override
+   public void run() {
+   
+   }
+   
+}

@@ -34,7 +34,7 @@ public abstract class TelaBluetooth extends Activity {
       btAdapter = BluetoothAdapter.getDefaultAdapter();
       
       if (btAdapter == null) {
-         Toast.makeText(this, "Hardware Bluetooth não detectado...", 
+         Toast.makeText(this, getResources().getString(R.string.bluetooth_nao_detect), 
                         Toast.LENGTH_LONG).show();
          finish();
       }
