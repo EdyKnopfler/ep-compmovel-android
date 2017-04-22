@@ -27,7 +27,6 @@ public class AlunoConfirmBluetooth extends TelaBluetooth
    private ArrayAdapter<String> listaAdapter;
    private LinearLayout nenhumEncontrado;
    private HashMap<String, String> enderecos;
-   
 
    @Override
    public void onCreate(Bundle savedInstanceState) {
@@ -87,6 +86,7 @@ public class AlunoConfirmBluetooth extends TelaBluetooth
       ThreadAlunoEnvia envio = 
          new ThreadAlunoEnvia(enderecos.get(dispositivo), "xxx", // NUSP aqui! :P
                               new ComunicacaoThreadUI(this));
+      progresso.setVisibility(View.VISIBLE);
       envio.start();
    }
    

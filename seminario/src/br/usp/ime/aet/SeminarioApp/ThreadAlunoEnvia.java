@@ -33,6 +33,7 @@ public class ThreadAlunoEnvia extends Thread {
          saida.write(nusp.getBytes());
          btSocket.close();
          ui.mensagemSimples("Confirmação de Presença", "Enviada com sucesso!");
+         ui.fecharTela();
       }
       catch (Exception ex) {
          ui.mensagemSimples("ERRO!", ex.getMessage());
