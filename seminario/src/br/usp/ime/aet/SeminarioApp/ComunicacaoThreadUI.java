@@ -34,5 +34,9 @@ public class ComunicacaoThreadUI {
          }
       });
    }
+   
+   public String pegarString(int id) {
+      return tela.getResources().getString(id);
+   }
 
 }

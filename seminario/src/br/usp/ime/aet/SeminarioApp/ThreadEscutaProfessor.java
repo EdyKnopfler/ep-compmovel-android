@@ -22,15 +22,21 @@ public class ThreadEscutaProfessor extends Thread {
    @Override
    public void run() {
       try {
+         Log.d("X", "Professor começando a escuta");
          BluetoothAdapter btAdapter = BluetoothAdapter.getDefaultAdapter();
+         Log.d("X", "Peguei o adapter");
          btServerSocket = btAdapter.listenUsingRfcommWithServiceRecord(
             "Seminários", UUID.fromString(uuid));
+         Log.d("X", "Criei o ServerSocket");
          
          // Para com uma exceção provocada pelo fechamento do ServerSocket
          while (true) {
+            Log.d("X", "Aguardando um aluno...");
             BluetoothSocket btSocket = btServerSocket.accept();
+            Log.d("X", "Aluno conectado :)");
             Thread recebimento = new ThreadProfessorRecebe(btSocket, ui);
             recebimento.start();
+            Log.d("X", "Disparei o recebimento");
          }
       }
       catch (Exception ex) {

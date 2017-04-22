@@ -13,5 +13,9 @@
     <string name="confirm">Confirmar</string>
     <string name="professor">Professor</string>
     <string name="aluno">Aluno</string>
-    
+    <string name="conf_pres_titulo">Confirmação de Presença</string>
+    <string name="conf_env_prof">Enviada para o professor a confirmação do NUSP </string>
+    <string name="conf_pres_nusp">A presença do aluno NUSP</string>    
+    <string name="conf_sucesso">confirmada com sucesso</string>
+    <string name="falhou_mensagem">falhou com a seguinte mensagem do servidor</string>
 </resources>

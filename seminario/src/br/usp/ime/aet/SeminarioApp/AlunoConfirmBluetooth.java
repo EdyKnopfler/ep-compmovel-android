@@ -82,18 +82,26 @@ public class AlunoConfirmBluetooth extends TelaBluetooth
    public void onItemClick(AdapterView<?> lista, View item, int pos, long id) {
       Log.e("X", "cliquei um item");
       getBtAdapter().cancelDiscovery();
+      Log.e("X", "parei a descoberta");
       String dispositivo = (String) listaDispositivos.getItemAtPosition(pos);
+      Log.e("X", "O dispositivo clicado foi " + dispositivo);
       ThreadAlunoEnvia envio = 
          new ThreadAlunoEnvia(enderecos.get(dispositivo), "xxx", // NUSP aqui! :P
                               new ComunicacaoThreadUI(this));
+      Log.e("X", "instanciei a thread");
       progresso.setVisibility(View.VISIBLE);
+      Log.e("X", "mostrei a barrinha");
       envio.start();
+      Log.e("X", "começou!");
    }
    
    @Override
    protected void acaoDesconexao() {
+      Log.e("X", "o usuário está fechando a tela!");
       unregisterReceiver(descoberta);
+      Log.e("X", "receiver foi parado");
       getBtAdapter().cancelDiscovery();
+      Log.e("X", "parei a descoberta");
    }
 
 }

@@ -5,6 +5,8 @@ import android.widget.TextView;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
 
+import android.util.Log;
+
 public class ProfessorConfirmBluetooth extends TelaBluetooth {
    
    private static final int ACAO_VISIBILIDADE = 1;
@@ -62,8 +64,12 @@ public class ProfessorConfirmBluetooth extends TelaBluetooth {
    
    @Override
    protected void acaoDesconexao() {
-      if (visivel)
+      Log.d("X", "Professor fechando a tela");
+      if (visivel) {
+         Log.d("X", "Estamos visíveis!");
          escuta.parar();
+         Log.d("X", "Mandei parar a escuta");
+      }
    }
    
 }
