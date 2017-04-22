@@ -3,7 +3,7 @@ package br.usp.ime.aet.SeminarioApp;
 import android.app.Activity;
 import android.app.AlertDialog;
 
-// Auxílio para threads poderem mostrar interagir com a UI
+// Auxílio para threads poderem interagir com a UI
 public class ComunicacaoThreadUI {
 
    private Activity tela;
