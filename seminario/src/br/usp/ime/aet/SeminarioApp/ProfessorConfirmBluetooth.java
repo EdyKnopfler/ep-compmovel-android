@@ -2,6 +2,7 @@ package br.usp.ime.aet.SeminarioApp;
 
 import android.os.Bundle;
 import android.widget.TextView;
+import android.view.View;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
 
@@ -9,8 +10,7 @@ import android.util.Log;
 
 public class ProfessorConfirmBluetooth extends TelaBluetooth {
    
-   private static final int ACAO_VISIBILIDADE = 1;
-   private static final int ACAO_INVISIBILIDADE = 2;
+   private static final int ACAO_VISIBILIDADE = 2;
    
    private boolean visivel;
    private ThreadEscutaProfessor escuta;
@@ -27,15 +27,19 @@ public class ProfessorConfirmBluetooth extends TelaBluetooth {
    }
    
    private void ativarVisibilidade() {
+      Log.d("X", "Ativando visibilidade...");
       boolean visivelAnterior = getBtAdapter().getScanMode() == 
                         BluetoothAdapter.SCAN_MODE_CONNECTABLE_DISCOVERABLE;
                         
       if (!visivelAnterior) {
+         Log.d("X", "Estávamos invisíveis!");
          Intent visivel = new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
          visivel.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 0);
+         Log.d("X", "Vou pedir confirmação");
          startActivityForResult(visivel, ACAO_VISIBILIDADE);
       }
       else {
+         Log.d("X", "Estávamos visíveis!");
          visivel = true;
          iniciarEscuta();
       }
@@ -46,19 +50,22 @@ public class ProfessorConfirmBluetooth extends TelaBluetooth {
       super.onActivityResult(requestCode, resultCode, data);
       
       if (requestCode == ACAO_VISIBILIDADE) {
-         if (resultCode == RESULT_OK) {
+         if (resultCode == 1) {
+            Log.d("X", "Agora estamos visíveis!");
             visivel = true;
             iniciarEscuta();
          }
-         else
+         else {
+            Log.d("X", "Resolveu não permitir");
             finish();
+         }
       }
    }
    
    private void iniciarEscuta() {
-      ((TextView) findViewById(R.id.pronto_receber)).setText(
-            getResources().getString(R.string.esperando_alunos));
+      Log.d("X", "Vou iniciar a escuta");
       escuta = new ThreadEscutaProfessor(new ComunicacaoThreadUI(this));
+      Log.d("X", "Criei a thread");
       escuta.start();
    }
    

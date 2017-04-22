@@ -3,10 +3,10 @@
     <string name="app_name">Seminários</string>
     <string name="bluetooth_nao_detect">Hardware Bluetooth não detectado...</string>
     <string name="celular_prof">O celular do professor está por perto?</string>
-    <string name="receber_confirm">Vamos receber confirmações de alunos por Bluetooth.</string>
+    <string name="receber_confirm">Vamos receber confirmações de alunos por Bluetooth! 
+                                   Aproxime um aparelho.</string>
     <string name="nenhum_disp_encontrado">Nenhum dispositivo foi encontrado!</string>
     <string name="tentar_novamente">Tentar novamente</string>
-    <string name="esperando_alunos">Pronto para conectar alunos!</string>
     <string name="conexao_falhou">Conexão com o celular do professor falhou!</string>
     <string name="nusp">Número USP</string>
     <string name="password">Senha</string>

@@ -40,7 +40,7 @@ public class ThreadEscutaProfessor extends Thread {
          }
       }
       catch (Exception ex) {
-         Log.d("X", "ESCUTA PAROU :) !");
+         Log.d("X", "ESCUTA PAROU :) !", ex);
       }
    }
    
