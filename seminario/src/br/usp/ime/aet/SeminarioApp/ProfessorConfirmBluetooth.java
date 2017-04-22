@@ -11,6 +11,7 @@ public class ProfessorConfirmBluetooth extends TelaBluetooth {
    private static final int ACAO_INVISIBILIDADE = 2;
    
    private boolean visivelAnterior, visivel;
+   private ThreadEscutaProfessor escuta;
    
    @Override
    public void onCreate(Bundle savedInstanceState) {
@@ -55,16 +56,21 @@ public class ProfessorConfirmBluetooth extends TelaBluetooth {
    private void iniciarEscuta() {
       ((TextView) findViewById(R.id.pronto_receber)).setText(
             getResources().getString(R.string.esperando_alunos));
-      // iniciar escuta do bicho aqui
+      escuta = new ThreadEscutaProfessor();
+      escuta.start();
    }
    
    @Override
    protected void acaoDesconexao() {
-      if (visivel && !visivelAnterior) {
-         // "Paramos" a visibilidade solicitando uma nova visibilidade com duração 1
-         Intent visivel = new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
-         visivel.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 1);
-         startActivityForResult(visivel, ACAO_INVISIBILIDADE);
+      if (visivel) {
+         if (!visivelAnterior) {
+            // "Paramos" a visibilidade solicitando uma nova visibilidade com duração 1
+            Intent visivel = new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
+            visivel.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 1);
+            startActivityForResult(visivel, ACAO_INVISIBILIDADE);
+         }
+         
+         escuta.parar();
       }
    }
    

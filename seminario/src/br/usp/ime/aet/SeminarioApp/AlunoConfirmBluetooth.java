@@ -34,6 +34,7 @@ public class AlunoConfirmBluetooth extends TelaBluetooth
       listaDispositivos = (ListView) findViewById(R.id.lista_dispositivos);
       listaAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
       listaDispositivos.setAdapter(listaAdapter);
+      listaDispositivos.setClickable(true);
       listaDispositivos.setOnItemClickListener(this);
       nenhumEncontrado = (LinearLayout) findViewById(R.id.nenhum_disp_encontrado);
       enderecos = new HashMap<String, String>();
@@ -53,37 +54,34 @@ public class AlunoConfirmBluetooth extends TelaBluetooth
          String acao = intent.getAction();
          
          if (BluetoothDevice.ACTION_FOUND.equals(acao)) {
-            nenhumEncontrado.setVisibility(View.INVISIBLE);
             BluetoothDevice disp = 
                   intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
             enderecos.put(disp.getName(), disp.getAddress());
             listaAdapter.add(disp.getName());
          }
          else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(acao)) {
+         
+            Log.d("X", "Terminou a descoberta");
+         
             if (enderecos.size() == 0)
                nenhumEncontrado.setVisibility(View.VISIBLE);
          }
       }
-      
    };
    
    public void tentarNovamente(View v) {
+      nenhumEncontrado.setVisibility(View.GONE);
       getBtAdapter().startDiscovery();
    }
    
-   // Estes parâmetros significam isto mesmo?
+   @Override
    public void onItemClick(AdapterView<?> lista, View item, int pos, long id) {
+      Log.e("X", "cliquei um item");
+      getBtAdapter().cancelDiscovery();
       String dispositivo = (String) listaDispositivos.getItemAtPosition(pos);
-      ConexaoAluno conexao = new ConexaoAluno(enderecos.get(dispositivo));
-      
-      try {
-         // depois!
-      }
-      catch (Exception ex) {
-         Toast.makeText(this, R.string.conexao_falhou, Toast.LENGTH_LONG)
-              .show();
-         Log.d("X", "Conexão falhou!", ex);
-      }
+      ThreadAlunoEnvia envio = 
+         new ThreadAlunoEnvia(enderecos.get(dispositivo), "xxx", "yyy");
+      envio.start();
    }
    
    @Override
