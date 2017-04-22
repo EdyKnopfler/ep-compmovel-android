@@ -1,13 +1,15 @@
 /home/ederson/Documentos/CompMovel/ep-compmovel-android/seminario/bin/classes.dex : \
 /home/ederson/Documentos/CompMovel/ep-compmovel-android/seminario/bin/classes/br/usp/ime/aet/SeminarioApp/R$layout.class \
 /home/ederson/Documentos/CompMovel/ep-compmovel-android/seminario/bin/classes/br/usp/ime/aet/SeminarioApp/LoginActivity$1.class \
-/home/ederson/Documentos/CompMovel/ep-compmovel-android/seminario/bin/classes/br/usp/ime/aet/SeminarioApp/ConexaoAluno.class \
 /home/ederson/Documentos/CompMovel/ep-compmovel-android/seminario/bin/classes/br/usp/ime/aet/SeminarioApp/LoginActivity.class \
 /home/ederson/Documentos/CompMovel/ep-compmovel-android/seminario/bin/classes/br/usp/ime/aet/SeminarioApp/ThreadAlunoEnvia.class \
 /home/ederson/Documentos/CompMovel/ep-compmovel-android/seminario/bin/classes/br/usp/ime/aet/SeminarioApp/R$id.class \
+/home/ederson/Documentos/CompMovel/ep-compmovel-android/seminario/bin/classes/br/usp/ime/aet/SeminarioApp/ComunicacaoThreadUI$1.class \
 /home/ederson/Documentos/CompMovel/ep-compmovel-android/seminario/bin/classes/br/usp/ime/aet/SeminarioApp/R$attr.class \
+/home/ederson/Documentos/CompMovel/ep-compmovel-android/seminario/bin/classes/br/usp/ime/aet/SeminarioApp/ComunicacaoThreadUI.class \
 /home/ederson/Documentos/CompMovel/ep-compmovel-android/seminario/bin/classes/br/usp/ime/aet/SeminarioApp/ProfessorConfirmBluetooth.class \
 /home/ederson/Documentos/CompMovel/ep-compmovel-android/seminario/bin/classes/br/usp/ime/aet/SeminarioApp/BuildConfig.class \
+/home/ederson/Documentos/CompMovel/ep-compmovel-android/seminario/bin/classes/br/usp/ime/aet/SeminarioApp/ComunicacaoThreadUI$2.class \
 /home/ederson/Documentos/CompMovel/ep-compmovel-android/seminario/bin/classes/br/usp/ime/aet/SeminarioApp/SeminarioApp.class \
 /home/ederson/Documentos/CompMovel/ep-compmovel-android/seminario/bin/classes/br/usp/ime/aet/SeminarioApp/AlunoConfirmBluetooth$1.class \
 /home/ederson/Documentos/CompMovel/ep-compmovel-android/seminario/bin/classes/br/usp/ime/aet/SeminarioApp/Consts.class \

@@ -10,14 +10,14 @@ import android.util.Log;
 
 public class ThreadAlunoEnvia extends Thread {
    
-   private String enderecoProf;
+   private String enderecoProf, nusp;
+   private ComunicacaoThreadUI ui;
    private BluetoothSocket btSocket;
-   private String nusp, semId;
    
-   public ThreadAlunoEnvia(String enderecoProf, String nusp, String semId) {
+   public ThreadAlunoEnvia(String enderecoProf, String nusp, ComunicacaoThreadUI ui) {
       this.enderecoProf = enderecoProf;
       this.nusp = nusp;
-      this.semId = semId;
+      this.ui = ui;
    }
    
    @Override
@@ -30,11 +30,12 @@ public class ThreadAlunoEnvia extends Thread {
                ThreadEscutaProfessor.uuid));
          btSocket.connect();
          OutputStream saida = btSocket.getOutputStream();
-         saida.write((nusp + " " + semId).getBytes());
+         saida.write(nusp.getBytes());
          btSocket.close();
-         Log.e("X", "Enviado com sucesso!");
+         ui.mensagemSimples("Confirmação de Presença", "Enviada com sucesso!");
       }
       catch (Exception ex) {
+         ui.mensagemSimples("ERRO!", ex.getMessage());
          Log.e("X", "Envio falhou!", ex);
       }
    }

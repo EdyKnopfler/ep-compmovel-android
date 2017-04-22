@@ -85,7 +85,8 @@ public class AlunoConfirmBluetooth extends TelaBluetooth
       getBtAdapter().cancelDiscovery();
       String dispositivo = (String) listaDispositivos.getItemAtPosition(pos);
       ThreadAlunoEnvia envio = 
-         new ThreadAlunoEnvia(enderecos.get(dispositivo), "xxx", "yyy");
+         new ThreadAlunoEnvia(enderecos.get(dispositivo), "xxx", // NUSP aqui! :P
+                              new ComunicacaoThreadUI(this));
       envio.start();
    }
    

@@ -10,7 +10,7 @@ public class ProfessorConfirmBluetooth extends TelaBluetooth {
    private static final int ACAO_VISIBILIDADE = 1;
    private static final int ACAO_INVISIBILIDADE = 2;
    
-   private boolean visivelAnterior, visivel;
+   private boolean visivel;
    private ThreadEscutaProfessor escuta;
    
    @Override
@@ -25,7 +25,7 @@ public class ProfessorConfirmBluetooth extends TelaBluetooth {
    }
    
    private void ativarVisibilidade() {
-      visivelAnterior = getBtAdapter().getScanMode() == 
+      boolean visivelAnterior = getBtAdapter().getScanMode() == 
                         BluetoothAdapter.SCAN_MODE_CONNECTABLE_DISCOVERABLE;
                         
       if (!visivelAnterior) {
@@ -56,22 +56,14 @@ public class ProfessorConfirmBluetooth extends TelaBluetooth {
    private void iniciarEscuta() {
       ((TextView) findViewById(R.id.pronto_receber)).setText(
             getResources().getString(R.string.esperando_alunos));
-      escuta = new ThreadEscutaProfessor();
+      escuta = new ThreadEscutaProfessor(new ComunicacaoThreadUI(this));
       escuta.start();
    }
    
    @Override
    protected void acaoDesconexao() {
-      if (visivel) {
-         if (!visivelAnterior) {
-            // "Paramos" a visibilidade solicitando uma nova visibilidade com duração 1
-            Intent visivel = new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
-            visivel.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 1);
-            startActivityForResult(visivel, ACAO_INVISIBILIDADE);
-         }
-         
+      if (visivel)
          escuta.parar();
-      }
    }
    
 }

@@ -8,9 +8,11 @@ import android.util.Log;
 public class ThreadProfessorRecebe extends Thread {
 
    private BluetoothSocket btSocket;
+   private ComunicacaoThreadUI ui;
 
-   public ThreadProfessorRecebe(BluetoothSocket socket) {
+   public ThreadProfessorRecebe(BluetoothSocket socket, ComunicacaoThreadUI ui) {
       this.btSocket = socket;
+      this.ui = ui;
    }
    
    @Override
@@ -25,13 +27,12 @@ public class ThreadProfessorRecebe extends Thread {
             bDados[i] = buffer[i];
          
          btSocket.close();
-         String sDados = new String(bDados);
-         String[] vDados = sDados.split(" ");
-         String nusp = vDados[0];
-         String semId = vDados[1];
-         Log.d("X", "Recebido com sucesso! " + nusp + " " + semId);
+         String nusp = new String(bDados);
+         ui.mensagemSimples("Confirmação de Presença!",
+            "Recebida confirmação NUSP " + nusp);
       }
       catch (Exception ex) {
+         ui.mensagemSimples("ERRO!", ex.getMessage());
          Log.d("X", "Leitura falhou!", ex);
       }
    }

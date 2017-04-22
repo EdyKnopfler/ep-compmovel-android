@@ -12,7 +12,12 @@ public class ThreadEscutaProfessor extends Thread {
    // Para o módulo do aluno informar na conexão
    public static final String uuid = "67186568-26ad-11e7-93ae-92361f002671";
    
+   private ComunicacaoThreadUI ui;
    private BluetoothServerSocket btServerSocket;
+   
+   public ThreadEscutaProfessor(ComunicacaoThreadUI ui) {
+      this.ui = ui;
+   }
    
    @Override
    public void run() {
@@ -24,7 +29,7 @@ public class ThreadEscutaProfessor extends Thread {
          // Para com uma exceção provocada pelo fechamento do ServerSocket
          while (true) {
             BluetoothSocket btSocket = btServerSocket.accept();
-            Thread recebimento = new ThreadProfessorRecebe(btSocket);
+            Thread recebimento = new ThreadProfessorRecebe(btSocket, ui);
             recebimento.start();
          }
       }
@@ -39,6 +44,7 @@ public class ThreadEscutaProfessor extends Thread {
          btServerSocket.close();
       }
       catch (Exception ex) {
+         ui.mensagemSimples("ERRO!", ex.getMessage());
          Log.d("X", "Erro ao cancelar o ServerSocket!", ex);
       }
    }
