@@ -3,6 +3,7 @@ package br.usp.ime.aet.SeminarioApp;
 import android.widget.ListView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 import java.util.HashMap;
 import android.os.Bundle;
@@ -21,6 +22,7 @@ import android.util.Log;
 public class AlunoConfirmBluetooth extends TelaBluetooth
                                    implements OnItemClickListener {
    
+   private ProgressBar progresso;
    private ListView listaDispositivos;
    private ArrayAdapter<String> listaAdapter;
    private LinearLayout nenhumEncontrado;
@@ -31,6 +33,7 @@ public class AlunoConfirmBluetooth extends TelaBluetooth
    public void onCreate(Bundle savedInstanceState) {
       super.onCreate(savedInstanceState);
       setContentView(R.layout.aluno_confirm_bluetooth);
+      progresso = (ProgressBar) findViewById(R.id.progresso);
       listaDispositivos = (ListView) findViewById(R.id.lista_dispositivos);
       listaAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
       listaDispositivos.setAdapter(listaAdapter);
@@ -46,6 +49,7 @@ public class AlunoConfirmBluetooth extends TelaBluetooth
       filtro.addAction(BluetoothDevice.ACTION_FOUND);
       filtro.addAction(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
       registerReceiver(descoberta, filtro);
+      progresso.setVisibility(View.VISIBLE);
       getBtAdapter().startDiscovery();
    }
    
@@ -60,7 +64,7 @@ public class AlunoConfirmBluetooth extends TelaBluetooth
             listaAdapter.add(disp.getName());
          }
          else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(acao)) {
-         
+            progresso.setVisibility(View.GONE);
             Log.d("X", "Terminou a descoberta");
          
             if (enderecos.size() == 0)
@@ -71,6 +75,7 @@ public class AlunoConfirmBluetooth extends TelaBluetooth
    
    public void tentarNovamente(View v) {
       nenhumEncontrado.setVisibility(View.GONE);
+      progresso.setVisibility(View.VISIBLE);
       getBtAdapter().startDiscovery();
    }
    

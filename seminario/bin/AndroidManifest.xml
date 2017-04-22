@@ -3,13 +3,33 @@
       package="br.usp.ime.aet.SeminarioApp"
       android:versionCode="1"
       android:versionName="1.0">
+    
+    <!-- Bluetooth -->
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    
+    <!-- Para conversar com o servidor -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application android:label="@string/app_name" android:icon="@drawable/ic_launcher">
+
         <activity android:name="SeminarioApp"
                   android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        
         </activity>
+        
+        <activity android:name=".LoginActivity" />
+        
+        <!-- Descoberta Bluetooth (aluno) -->
+        <activity android:name=".AlunoConfirmBluetooth" />
+        
+        <!-- Disponibilidade para descoberta Bluetooth (professor) -->
+        <activity android:name=".ProfessorConfirmBluetooth" />
+        
     </application>
 </manifest>

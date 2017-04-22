@@ -6,5 +6,6 @@
 /home/ederson/Documentos/CompMovel/ep-compmovel-android/seminario/res/layout/prof_confirm_bluetooth.xml \
 /home/ederson/Documentos/CompMovel/ep-compmovel-android/seminario/res/layout/main.xml \
 /home/ederson/Documentos/CompMovel/ep-compmovel-android/seminario/res/layout/aluno_confirm_bluetooth.xml \
+/home/ederson/Documentos/CompMovel/ep-compmovel-android/seminario/res/layout/login.xml \
 /home/ederson/Documentos/CompMovel/ep-compmovel-android/seminario/res/drawable-hdpi/ic_launcher.png \
 /home/ederson/Documentos/CompMovel/ep-compmovel-android/seminario/bin/AndroidManifest.xml \

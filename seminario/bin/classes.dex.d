@@ -1,10 +1,22 @@
 /home/ederson/Documentos/CompMovel/ep-compmovel-android/seminario/bin/classes.dex : \
 /home/ederson/Documentos/CompMovel/ep-compmovel-android/seminario/bin/classes/br/usp/ime/aet/SeminarioApp/R$layout.class \
+/home/ederson/Documentos/CompMovel/ep-compmovel-android/seminario/bin/classes/br/usp/ime/aet/SeminarioApp/LoginActivity$1.class \
+/home/ederson/Documentos/CompMovel/ep-compmovel-android/seminario/bin/classes/br/usp/ime/aet/SeminarioApp/ConexaoAluno.class \
+/home/ederson/Documentos/CompMovel/ep-compmovel-android/seminario/bin/classes/br/usp/ime/aet/SeminarioApp/LoginActivity.class \
+/home/ederson/Documentos/CompMovel/ep-compmovel-android/seminario/bin/classes/br/usp/ime/aet/SeminarioApp/ThreadAlunoEnvia.class \
+/home/ederson/Documentos/CompMovel/ep-compmovel-android/seminario/bin/classes/br/usp/ime/aet/SeminarioApp/R$id.class \
 /home/ederson/Documentos/CompMovel/ep-compmovel-android/seminario/bin/classes/br/usp/ime/aet/SeminarioApp/R$attr.class \
 /home/ederson/Documentos/CompMovel/ep-compmovel-android/seminario/bin/classes/br/usp/ime/aet/SeminarioApp/ProfessorConfirmBluetooth.class \
 /home/ederson/Documentos/CompMovel/ep-compmovel-android/seminario/bin/classes/br/usp/ime/aet/SeminarioApp/BuildConfig.class \
 /home/ederson/Documentos/CompMovel/ep-compmovel-android/seminario/bin/classes/br/usp/ime/aet/SeminarioApp/SeminarioApp.class \
+/home/ederson/Documentos/CompMovel/ep-compmovel-android/seminario/bin/classes/br/usp/ime/aet/SeminarioApp/AlunoConfirmBluetooth$1.class \
+/home/ederson/Documentos/CompMovel/ep-compmovel-android/seminario/bin/classes/br/usp/ime/aet/SeminarioApp/Consts.class \
 /home/ederson/Documentos/CompMovel/ep-compmovel-android/seminario/bin/classes/br/usp/ime/aet/SeminarioApp/R$string.class \
+/home/ederson/Documentos/CompMovel/ep-compmovel-android/seminario/bin/classes/br/usp/ime/aet/SeminarioApp/ThreadEscutaProfessor.class \
 /home/ederson/Documentos/CompMovel/ep-compmovel-android/seminario/bin/classes/br/usp/ime/aet/SeminarioApp/AlunoConfirmBluetooth.class \
+/home/ederson/Documentos/CompMovel/ep-compmovel-android/seminario/bin/classes/br/usp/ime/aet/SeminarioApp/LoginActivity$LoginTask.class \
 /home/ederson/Documentos/CompMovel/ep-compmovel-android/seminario/bin/classes/br/usp/ime/aet/SeminarioApp/R$drawable.class \
+/home/ederson/Documentos/CompMovel/ep-compmovel-android/seminario/bin/classes/br/usp/ime/aet/SeminarioApp/ThreadProfessorRecebe.class \
+/home/ederson/Documentos/CompMovel/ep-compmovel-android/seminario/bin/classes/br/usp/ime/aet/SeminarioApp/TelaBluetooth.class \
 /home/ederson/Documentos/CompMovel/ep-compmovel-android/seminario/bin/classes/br/usp/ime/aet/SeminarioApp/R.class \
+/home/ederson/Documentos/CompMovel/ep-compmovel-android/seminario/bin/dexedLibs/http-request-5.6-406e78acd471e59b27e120792050d450.jar \
