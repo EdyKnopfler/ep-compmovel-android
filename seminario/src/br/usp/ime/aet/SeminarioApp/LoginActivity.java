@@ -13,13 +13,13 @@ import android.util.Log;
 public class LoginActivity extends Activity {
    private final static	String LOG = "login";
    private EditText e_nusp, e_pass;
-   private String nusp, pass, url;
+   private String nusp, pass, name, url;
    
    @Override
    public void onCreate(Bundle state) {
       super.onCreate(state);
       setContentView(R.layout.login);
-      
+      Log.d(LOG, "On Create do Login");
       e_nusp = (EditText) findViewById(R.id.nusp);
       e_pass = (EditText) findViewById(R.id.password);
    }
@@ -35,6 +35,43 @@ public class LoginActivity extends Activity {
       
       Log.d(LOG, nusp + " " + pass);
       new LoginTask().execute();
+   }
+
+   //Metodo que busca os dados do usuario no banco a partir do numero USP
+   public void searchUser(View view){
+	Integer isProfessor;
+	Log.d(LOG, "Entrou aqui!!!");
+	nusp = e_nusp.getText().toString();
+
+
+	Log.d(LOG, nusp);
+	if (getIntent().getStringExtra("tipo").equals("prof")){
+		isProfessor = 1;
+		url = Consts.SERVIDOR + "teacher/get/" + nusp;
+	}else{
+		isProfessor = 0;
+		url = Consts.SERVIDOR + "student/get/" + nusp;
+	}
+	Log.d(LOG, url);
+	try{
+		String json = HttpRequest.get(url).body();
+
+		JSONObject token = new JSONObject(json);
+		Log.d(LOG, token.getString("success"));
+
+		if( token.getString("success").equals("true")){
+			//cria um objeto usuario para ser passado para as proximas activitys 
+			//que precisasem das informacoes do usuario
+			JSONObject data = token.getJSONObject("data");
+			name = data.getString("name");
+			Log.d(LOG, name);
+			User user = new User(name, nusp, isProfessor);
+		}
+	}
+	catch (Exception e){
+		Log.d(LOG, "Deu ruim", e);
+	}
+
    }
    
    private class LoginTask extends AsyncTask<Void, Void, Void> {
