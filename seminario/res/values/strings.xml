@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Seminários</string>
+    <string name="app_name">AppSeminários</string>
     <string name="bluetooth_nao_detect">Hardware Bluetooth não detectado...</string>
     <string name="celular_prof">O celular do professor está por perto?</string>
     <string name="receber_confirm">Vamos receber confirmações de alunos por Bluetooth.</string>
