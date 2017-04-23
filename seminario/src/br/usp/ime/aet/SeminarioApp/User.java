@@ -10,7 +10,7 @@ public class User{
 	private String nusp;
 	private Integer isProfessor; //1 Professor, 0 Student
   
-	public void User(String name, String nusp, Integer isProfessor){
+	User(String name, String nusp, Integer isProfessor){
 		this.name = name;
 		this.nusp = nusp;
 		this.isProfessor = isProfessor;
