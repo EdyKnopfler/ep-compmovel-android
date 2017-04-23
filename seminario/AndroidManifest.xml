@@ -22,15 +22,16 @@
         
         <!-- Descoberta Bluetooth (aluno) -->
         <activity android:name=".AlunoConfirmBluetooth">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        
+
         </activity>
         
         <!-- Disponibilidade para descoberta Bluetooth (professor) -->
         <activity android:name=".ProfessorConfirmBluetooth">
+        
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         
         </activity>
         
