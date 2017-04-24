@@ -76,7 +76,7 @@ public class LoginActivity extends Activity {
 
 	}
 
-	private void cadastroUsuario(View v){
+	public void cadastroUsuario(View v){
 		Intent i;
 		i = new Intent(this, CadastroUsuario.class);
 		i.putExtra("tipo", getIntent().getStringExtra("tipo"));
