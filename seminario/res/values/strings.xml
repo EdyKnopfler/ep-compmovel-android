@@ -25,5 +25,5 @@
     <string name="usuario_cadastrado">Usuario cadastrado com sucesso</string>
     <string name="falha">Falha</string>
     <string name="dados_incorretos">Dados incorretos</string>
-    
+    <string name="usuario_alterado">Cadastro do usuario alterado com sucesso</string>
 </resources>

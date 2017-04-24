@@ -38,6 +38,8 @@
         <activity android:name=".MenuAluno" />
 	
 	<activity android:name=".CadastroUsuario" />
+	
+	<activity android:name=".AlterarCadastro" />
         
     </application>
 </manifest>

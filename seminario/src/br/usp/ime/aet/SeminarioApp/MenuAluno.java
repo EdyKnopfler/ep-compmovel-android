@@ -14,7 +14,10 @@ public class MenuAluno extends Activity {
    }
    
    public void alterarCadastro(View v) {
-
+	   Intent i;
+	   i = new Intent(this, AlterarCadastro.class);
+	   i.putExtra("tipo", "aluno");
+	   startActivity(i);
    }
 
    public void listarSeminarios(View v){
