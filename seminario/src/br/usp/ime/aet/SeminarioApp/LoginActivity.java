@@ -109,6 +109,7 @@ public class LoginActivity extends Activity {
 					}
 					i.putExtra("nusp", nusp);
 					startActivity(i);
+					LoginActivity.this.finish();
 				}
 				else{
 					AlertDialog.Builder alert = new AlertDialog.Builder(LoginActivity.this);
