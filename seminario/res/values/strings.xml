@@ -13,5 +13,10 @@
     <string name="confirm">Confirmar</string>
     <string name="professor">Professor</string>
     <string name="aluno">Aluno</string>
-    
+    <string name="falha_login">Falha de Login</string>
+    <string name="login_incorreto">N.USP ou senha incorretos</string>
+    <string name="alterar_cadastro">Alterar Cadastro</string>
+    <string name="listar_seminarios">Listar Seminários</string>
+    <string name="confirmar_presenca">Confirmar Presença</string>
+    <string name="cadastrar_seminario">Cadastrar Seminário</string>
 </resources>

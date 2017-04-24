@@ -4,8 +4,9 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.content.Intent;
+import java.io.Serializable;
 
-public class User{
+public class User implements Serializable{
 	private String name;
 	private String nusp;
 	private Integer isProfessor; //1 Professor, 0 Student

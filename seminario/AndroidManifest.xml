@@ -30,6 +30,12 @@
         
         <!-- Disponibilidade para descoberta Bluetooth (professor) -->
         <activity android:name=".ProfessorConfirmBluetooth" />
+       
+	<!--Menu Professor -->
+        <activity android:name=".MenuProf" />
+
+	<!-- Menu Aluno -->
+        <activity android:name=".MenuAluno" />
         
     </application>
 </manifest>
