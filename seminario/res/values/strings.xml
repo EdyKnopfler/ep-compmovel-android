@@ -19,4 +19,11 @@
     <string name="listar_seminarios">Listar Seminários</string>
     <string name="confirmar_presenca">Confirmar Presença</string>
     <string name="cadastrar_seminario">Cadastrar Seminário</string>
+    <string name="cadastre_se">Cadastre-se</string>
+    <string name="name">Nome</string>
+    <string name="sucesso">Sucesso</string>
+    <string name="usuario_cadastrado">Usuario cadastrado com sucesso</string>
+    <string name="falha">Falha</string>
+    <string name="dados_incorretos">Dados incorretos</string>
+    
 </resources>
