@@ -76,7 +76,7 @@ public class LoginActivity extends Activity {
 
 	}
 
-	private void cadastroUsuario(View v){
+	public void cadastroUsuario(View v){
 		Intent i;
 		i = new Intent(this, CadastroUsuario.class);
 		i.putExtra("tipo", getIntent().getStringExtra("tipo"));
@@ -109,6 +109,7 @@ public class LoginActivity extends Activity {
 					}
 					i.putExtra("nusp", nusp);
 					startActivity(i);
+					LoginActivity.this.finish();
 				}
 				else{
 					AlertDialog.Builder alert = new AlertDialog.Builder(LoginActivity.this);

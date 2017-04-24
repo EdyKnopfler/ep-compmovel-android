@@ -19,7 +19,7 @@ public class CadastroUsuario extends Activity {
 	@Override
 	public void onCreate(Bundle state) {
 		super.onCreate(state);
-		setContentView(R.layout.login);
+		setContentView(R.layout.cadastro_usuario);
 		Log.d(LOG, "On Create do Cadastro");
 		e_nusp = (EditText) findViewById(R.id.nusp);
 		e_pass = (EditText) findViewById(R.id.password);
@@ -51,8 +51,7 @@ public class CadastroUsuario extends Activity {
 			Log.d(LOG, token.getString("success"));
 			String alertTitle;
 			String alertMessage;
-			//TODO:Trocar o false para true quando o servidor funcionar!!!
-			if(token.getString("success").equals("false")){
+			if(token.getString("success").equals("true")){
 				alertTitle = getResources().getString(R.string.sucesso);
 				alertMessage = getResources().getString(R.string.usuario_cadastrado);
 			}else{
