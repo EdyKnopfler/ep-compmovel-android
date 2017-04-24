@@ -36,6 +36,8 @@
 
 	<!-- Menu Aluno -->
         <activity android:name=".MenuAluno" />
+	
+	<activity android:name=".CadastroUsuario" />
         
     </application>
 </manifest>
