@@ -21,6 +21,9 @@ public class MenuProf extends Activity {
    }
  
    public void cadastrarSeminario(View v) {
+	   Intent i;
+	   i = new Intent(this, CadastroSeminario.class);
+	   startActivity(i);
 
    }
 

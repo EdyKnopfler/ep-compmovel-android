@@ -40,6 +40,8 @@
 	<activity android:name=".CadastroUsuario" />
 	
 	<activity android:name=".AlterarCadastro" />
+	
+	<activity android:name=".CadastroSeminario" />
         
     </application>
 </manifest>
