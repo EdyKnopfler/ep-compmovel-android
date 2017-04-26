@@ -24,12 +24,13 @@ public class MenuProf extends Activity {
 	   Intent i;
 	   i = new Intent(this, CadastroSeminario.class);
 	   startActivity(i);
-
    }
 
 
    public void listarSeminarios(View v){
-
+	   Intent i;
+	   i = new Intent(this, ListarSeminarios.class);
+	   startActivity(i);
    }
    
 }

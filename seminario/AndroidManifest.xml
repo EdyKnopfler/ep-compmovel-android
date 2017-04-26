@@ -42,6 +42,8 @@
 	<activity android:name=".AlterarCadastro" />
 	
 	<activity android:name=".CadastroSeminario" />
+	
+	<activity android:name=".ListarSeminarios" />
         
     </application>
 </manifest>

@@ -21,6 +21,9 @@ public class MenuAluno extends Activity {
    }
 
    public void listarSeminarios(View v){
+	   Intent i;
+	   i = new Intent(this, ListarSeminarios.class);
+	   startActivity(i);
 
    }
    

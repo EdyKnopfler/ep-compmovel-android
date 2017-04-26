@@ -28,5 +28,8 @@
     <string name="usuario_alterado">Cadastro do usuario alterado com sucesso</string>
     <string name="sucesso_operacao">Operação realizada com sucesso</string>
     <string name="falha_operacao">Falha na operação</string>
+    <string name="lista_seminarios">Lista de Seminários</string>
+    <string name="nenhum_seminario_encontrado">Nenhum Seminário Encontrado</string>
+
 
 </resources>
