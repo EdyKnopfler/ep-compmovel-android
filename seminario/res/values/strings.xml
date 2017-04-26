@@ -3,7 +3,7 @@
     <string name="app_name">Seminários</string>
     <string name="bluetooth_nao_detect">Hardware Bluetooth não detectado...</string>
     <string name="celular_prof">O celular do professor está por perto?</string>
-    <string name="receber_confirm">Vamos receber confirmações de alunos por Bluetooth! 
+    <string name="receber_confirm">Vamos receber confirmações de alunos por Bluetooth!
                                    Aproxime um aparelho.</string>
     <string name="nenhum_disp_encontrado">Nenhum dispositivo foi encontrado!</string>
     <string name="tentar_novamente">Tentar novamente</string>
@@ -15,7 +15,13 @@
     <string name="aluno">Aluno</string>
     <string name="conf_pres_titulo">Confirmação de Presença</string>
     <string name="conf_env_prof">Enviada para o professor a confirmação do NUSP </string>
-    <string name="conf_pres_nusp">A presença do aluno NUSP</string>    
+    <string name="conf_pres_nusp">A presença do aluno NUSP</string>
     <string name="conf_sucesso">confirmada com sucesso</string>
     <string name="falhou_mensagem">falhou com a seguinte mensagem do servidor</string>
+    <string name="btooth_falha_aluno">
+      Não conseguiu conectar-se ao professor.\n
+      Verifique se:\n
+      - foi selecionado o aparelho correto\n
+      - o professor autorizou o pareamento
+    </string>
 </resources>
