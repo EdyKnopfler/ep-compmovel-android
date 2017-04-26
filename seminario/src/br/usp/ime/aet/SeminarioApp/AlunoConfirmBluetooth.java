@@ -17,11 +17,9 @@ import android.content.BroadcastReceiver;
 import android.widget.AdapterView;
 import static android.widget.AdapterView.OnItemClickListener;
 
-import android.util.Log;
-
 public class AlunoConfirmBluetooth extends TelaBluetooth
                                    implements OnItemClickListener {
-   
+
    private ProgressBar progresso;
    private ListView listaDispositivos;
    private ArrayAdapter<String> listaAdapter;
@@ -41,7 +39,7 @@ public class AlunoConfirmBluetooth extends TelaBluetooth
       nenhumEncontrado = (LinearLayout) findViewById(R.id.nenhum_disp_encontrado);
       enderecos = new HashMap<String, String>();
    }
-   
+
    @Override
    protected void acaoBluetooth() {
       IntentFilter filtro = new IntentFilter();
@@ -51,45 +49,43 @@ public class AlunoConfirmBluetooth extends TelaBluetooth
       progresso.setVisibility(View.VISIBLE);
       getBtAdapter().startDiscovery();
    }
-   
+
    private final BroadcastReceiver descoberta = new BroadcastReceiver() {
       public void onReceive(Context context, Intent intent) {
          String acao = intent.getAction();
-         
+
          if (BluetoothDevice.ACTION_FOUND.equals(acao)) {
-            BluetoothDevice disp = 
+            BluetoothDevice disp =
                   intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
             enderecos.put(disp.getName(), disp.getAddress());
             listaAdapter.add(disp.getName());
          }
          else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(acao)) {
             progresso.setVisibility(View.GONE);
-            Log.d("X", "Terminou a descoberta");
-         
+
             if (enderecos.size() == 0)
                nenhumEncontrado.setVisibility(View.VISIBLE);
          }
       }
    };
-   
+
    public void tentarNovamente(View v) {
       nenhumEncontrado.setVisibility(View.GONE);
       progresso.setVisibility(View.VISIBLE);
       getBtAdapter().startDiscovery();
    }
-   
+
    @Override
    public void onItemClick(AdapterView<?> lista, View item, int pos, long id) {
-      Log.e("X", "cliquei um item");
       getBtAdapter().cancelDiscovery();
       String dispositivo = (String) listaDispositivos.getItemAtPosition(pos);
-      ThreadAlunoEnvia envio = 
+      ThreadAlunoEnvia envio =
          new ThreadAlunoEnvia(enderecos.get(dispositivo), "xxx", // NUSP aqui! :P
                               new ComunicacaoThreadUI(this));
       progresso.setVisibility(View.VISIBLE);
       envio.start();
    }
-   
+
    @Override
    protected void acaoDesconexao() {
       unregisterReceiver(descoberta);
