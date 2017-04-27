@@ -5,28 +5,22 @@ import android.bluetooth.BluetoothServerSocket;
 import android.bluetooth.BluetoothSocket;
 import java.util.UUID;
 
-import android.util.Log;
-
 public class ThreadEscutaProfessor extends Thread {
 
-   // Para o módulo do aluno informar na conexão
-   public static final String uuid = "67186568-26ad-11e7-93ae-92361f002671";
-   
    private ComunicacaoThreadUI ui;
    private BluetoothServerSocket btServerSocket;
-   
+
    public ThreadEscutaProfessor(ComunicacaoThreadUI ui) {
       this.ui = ui;
    }
-   
+
    @Override
    public void run() {
       try {
          BluetoothAdapter btAdapter = BluetoothAdapter.getDefaultAdapter();
          btServerSocket = btAdapter.listenUsingRfcommWithServiceRecord(
-            "Seminários", UUID.fromString(uuid));
-         
-         // Para com uma exceção provocada pelo fechamento do ServerSocket
+            "Seminários", UUID.fromString(Consts.uuid));
+
          while (true) {
             BluetoothSocket btSocket = btServerSocket.accept();
             Thread recebimento = new ThreadProfessorRecebe(btSocket, ui);
@@ -34,19 +28,17 @@ public class ThreadEscutaProfessor extends Thread {
          }
       }
       catch (Exception ex) {
-         Log.d("X", "ESCUTA PAROU :) !");
+         // Ao sair da tela, o ServerSocket é fechado e o loop para
       }
    }
-   
+
    public void parar() {
       try {
-         Log.d("X", "Vou mandar a escuta parar");
          btServerSocket.close();
       }
       catch (Exception ex) {
          ui.mensagemSimples("ERRO!", ex.getMessage());
-         Log.d("X", "Erro ao cancelar o ServerSocket!", ex);
       }
    }
-   
+
 }
