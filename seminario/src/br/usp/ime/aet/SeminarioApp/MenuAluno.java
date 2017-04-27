@@ -12,7 +12,7 @@ public class MenuAluno extends Activity {
       super.onCreate(savedInstanceState);
       setContentView(R.layout.aluno_menu);
    }
-   
+
    public void alterarCadastro(View v) {
 	   Intent i;
 	   i = new Intent(this, AlterarCadastro.class);
@@ -23,8 +23,9 @@ public class MenuAluno extends Activity {
    public void listarSeminarios(View v){
 	   Intent i;
 	   i = new Intent(this, ListarSeminarios.class);
+      i.putExtra("tipo", "aluno");
 	   startActivity(i);
 
    }
-   
+
 }

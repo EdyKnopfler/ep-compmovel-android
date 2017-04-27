@@ -19,8 +19,13 @@ import android.util.Log;
 
 public class ListarSeminarios extends Activity implements OnItemClickListener{
 
-	ListView listView;
-	private final static String LOG = "LISTAR"; 
+	private final static int ALTERACAO_SEMINARIO = 222;
+	private final static String LOG = "LISTAR";
+
+	private String tipo;
+	private ListView listView;
+	private ArrayAdapter<String> adapter;
+	private HashMap<String, String> seminarios;
 	private String url = Consts.SERVIDOR + "seminar";
 
 	@Override
@@ -28,15 +33,17 @@ public class ListarSeminarios extends Activity implements OnItemClickListener{
 		Log.d(LOG, "Entrou no ListarSeminarios");
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.listar_seminarios);
-		HashMap<String, String> seminarios = new HashMap<String, String>();
-		// Get ListView object from xml
+		tipo = getIntent().getStringExtra("tipo");
+		seminarios = new HashMap<String, String>();
 		listView = (ListView) findViewById(R.id.lista_seminarios);
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-				android.R.layout.simple_list_item_1);
+		adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
 		listView.setAdapter(adapter);
-	       	listView.setClickable(true);
-		listView.setOnItemClickListener(this);	
+		listView.setClickable(true);
+		listView.setOnItemClickListener(this);
+		listar();
+	}
 
+	private void listar() {
 		//Vai preencher com o nome dos seminarios
 		Log.d(LOG, url);
 		try{
@@ -46,11 +53,12 @@ public class ListarSeminarios extends Activity implements OnItemClickListener{
 			Log.d(LOG, token.getString("success"));
 
 			if( token.getString("success").equals("true")){
+				adapter.clear();
 				JSONArray data = token.getJSONArray("data");
 				for(int j=0; j<data.length(); j++){
 					String id = data.getJSONObject(j).getString("id");
 					String name = data.getJSONObject(j).getString("name");
-					seminarios.put(id, name);
+					seminarios.put(name, id);
 					adapter.add(name);
 				}
 			}
@@ -58,7 +66,7 @@ public class ListarSeminarios extends Activity implements OnItemClickListener{
 		catch (Exception e){
 			Log.d(LOG, "Deu ruim", e);
 		}
-		
+
 	}
 
 	@Override
@@ -66,11 +74,20 @@ public class ListarSeminarios extends Activity implements OnItemClickListener{
 		Log.d(LOG,"!!!!SEMINARIO CLICADO!!!!");
 		String nomeSem = (String) listView.getItemAtPosition(pos);
 		Log.d(LOG, nomeSem);
-		//TODO: consulta se eh prof ou aluno pra chamar a view certa
-		Intent i = new Intent(ListarSeminarios.this, SeminarioProfMenu.class);
-		//TODO: passa aqui o nome e id do seminario
-		startActivity(i);
-	
+		Intent i;
+		if (tipo.equals("prof")) {
+			i = new Intent(this, SeminarioProfMenu.class);
+			// TODO: criar a SeminarioAlunoMenu
+			i.putExtra("id", seminarios.get(nomeSem));
+			i.putExtra("nome", nomeSem);
+			startActivityForResult(i, ALTERACAO_SEMINARIO);
+		}
 	}
-}	
 
+	@Override
+   protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+      if (requestCode == ALTERACAO_SEMINARIO)
+			listar();
+	}
+
+}

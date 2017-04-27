@@ -12,14 +12,14 @@ public class MenuProf extends Activity {
       super.onCreate(savedInstanceState);
       setContentView(R.layout.prof_menu);
    }
-   
+
    public void alterarCadastro(View v) {
 	   Intent i;
 	   i = new Intent(this, AlterarCadastro.class);
 	   i.putExtra("tipo", "prof");
 	   startActivity(i);
    }
- 
+
    public void cadastrarSeminario(View v) {
 	   Intent i;
 	   i = new Intent(this, CadastroSeminario.class);
@@ -30,7 +30,8 @@ public class MenuProf extends Activity {
    public void listarSeminarios(View v){
 	   Intent i;
 	   i = new Intent(this, ListarSeminarios.class);
+      i.putExtra("tipo", "prof");
 	   startActivity(i);
    }
-   
+
 }

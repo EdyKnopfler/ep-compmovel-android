@@ -45,4 +45,9 @@
       - foi selecionado o aparelho correto\n
       - o professor autorizou o pareamento
     </string>
+    <string name="alterar">Alterar</string>
+    <string name="excluir">Excluir</string>
+    <string name="conf_excluir">Confirma a exclusão?</string>
+    <string name="sim">Sim</string>
+    <string name="nao">Não</string>
 </resources>

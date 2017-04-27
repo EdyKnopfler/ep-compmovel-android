@@ -10,11 +10,12 @@ import org.json.JSONObject;
 import android.util.Log;
 import android.content.Intent;
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 
 public class CadastroSeminario extends Activity {
 	private final static	String LOG = "cadSeminario";
 	private EditText e_name;
-	private String name, url;
+	private String id, name;
 
 	@Override
 	public void onCreate(Bundle state) {
@@ -22,21 +23,31 @@ public class CadastroSeminario extends Activity {
 		setContentView(R.layout.cadastro_seminario);
 		Log.d(LOG, "On Create do Cadastro Seminario");
 		e_name = (EditText) findViewById(R.id.name);
+		id = getIntent().getStringExtra("id");  // em caso de alteração
+		name = getIntent().getStringExtra("name");
+		if (name != null) e_name.setText(name);
 	}
 
 	public void postCadastroSeminario(View view) {
 		name = e_name.getText().toString();
-		url = Consts.SERVIDOR + "seminar/add";
+		HashMap<String, String> data = new HashMap<String, String>();
+		data.put("name", name);
+		String url;
+
+		if (id != null) {
+			url = Consts.SERVIDOR + "seminar/edit";
+			data.put("id", id);
+		}
+		else
+			url = Consts.SERVIDOR + "seminar/add";
 
 		try {
 			Log.d(LOG, "entrou no postCadastroSeminario");
-			HashMap<String, String> data = new HashMap<String, String>();
-			data.put("name", name);
 			String json = HttpRequest
 				.post(url)
 				.form(data)
 				.body();
-			
+
 			Log.d(LOG, "fez o post");
 			JSONObject token = new JSONObject(json);
 			Log.d(LOG, token.getString("success"));
@@ -50,11 +61,20 @@ public class CadastroSeminario extends Activity {
 				alertMessage = getResources().getString(R.string.falha_operacao);
 
 			}
+			Log.d(LOG, "cria o resultado da intent");
+			Intent result = new Intent();
+			result.putExtra("name", name);
+			setResult(Activity.RESULT_OK, result);
 			Log.d(LOG, "cria o alert");
 			AlertDialog.Builder alert = new AlertDialog.Builder(this);
 			alert.setTitle(alertTitle);
 			alert.setMessage(alertMessage);
-			alert.setPositiveButton("OK", null);
+			alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					finish();
+				}
+			});
 			alert.show();
 
 		}

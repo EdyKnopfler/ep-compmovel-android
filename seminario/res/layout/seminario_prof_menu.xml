@@ -4,6 +4,12 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     >
+
+   <TextView
+       android:id="@+id/nome_sem"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+   />
    <Button
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
@@ -13,10 +19,18 @@
    <Button
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
-       android:text="@string/listar_alunos"
-       android:onClick="listarAlunos"       
+       android:text="@string/alterar"
+       android:onClick="alterar"
    />
-
-
+   <Button
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:text="@string/excluir"
+       android:onClick="excluir"
+   />
+   <ListView
+       android:id="@+id/lista_alunos"
+       android:layout_width="wrap_content"
+       android:layout_height="match_parent"
+       />
 </LinearLayout>
-
