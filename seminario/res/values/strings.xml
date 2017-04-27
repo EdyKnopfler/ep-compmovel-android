@@ -3,7 +3,7 @@
     <string name="app_name">AppSeminários</string>
     <string name="bluetooth_nao_detect">Hardware Bluetooth não detectado...</string>
     <string name="celular_prof">O celular do professor está por perto?</string>
-    <string name="receber_confirm">Vamos receber confirmações de alunos por Bluetooth.</string>
+    <string name="receber_confirm">Receber Confirmações por Bluetooth.</string>
     <string name="nenhum_disp_encontrado">Nenhum dispositivo foi encontrado!</string>
     <string name="tentar_novamente">Tentar novamente</string>
     <string name="esperando_alunos">Pronto para conectar alunos!</string>
@@ -30,6 +30,7 @@
     <string name="falha_operacao">Falha na operação</string>
     <string name="lista_seminarios">Lista de Seminários</string>
     <string name="nenhum_seminario_encontrado">Nenhum Seminário Encontrado</string>
-
-
+    <string name="comprovar_presenca_bluetooth">Comprovar Presença por BlueTooth</string>
+    <string name="comprovar_presenca_qr_code">Comprovar Presença por QRCode</string>
+    <string name="listar_alunos">Listar Alunos Presentes</string>
 </resources>

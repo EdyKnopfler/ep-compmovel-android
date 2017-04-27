@@ -17,7 +17,7 @@ import org.json.JSONArray;
 import com.github.kevinsawicki.http.HttpRequest;
 import android.util.Log;
 
-public class ListarSeminarios extends Activity{
+public class ListarSeminarios extends Activity implements OnItemClickListener{
 
 	ListView listView;
 	private final static String LOG = "LISTAR"; 
@@ -25,6 +25,7 @@ public class ListarSeminarios extends Activity{
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		Log.d(LOG, "Entrou no ListarSeminarios");
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.listar_seminarios);
 		HashMap<String, String> seminarios = new HashMap<String, String>();
@@ -58,5 +59,16 @@ public class ListarSeminarios extends Activity{
 		
 	}
 
-}		
+	@Override
+	public void onItemClick(AdapterView<?> lista, View item, int pos, long id) {
+		Log.d(LOG,"!!!!SEMINARIO CLICADO!!!!");
+		String nomeSem = (String) listView.getItemAtPosition(pos);
+		Log.d(LOG, nomeSem);
+		//TODO: consulta se eh prof ou aluno pra chamar a view certa
+		Intent i = new Intent(ListarSeminarios.this, SeminarioProfMenu.class);
+		//TODO: passa aqui o nome e id do seminario
+		startActivity(i);
+	
+	}
+}	
 

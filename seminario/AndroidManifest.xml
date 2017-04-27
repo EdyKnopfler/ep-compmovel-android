@@ -44,6 +44,8 @@
 	<activity android:name=".CadastroSeminario" />
 	
 	<activity android:name=".ListarSeminarios" />
-        
+	
+	<activity android:name=".SeminarioProfMenu" />
+	
     </application>
 </manifest>
