@@ -33,7 +33,9 @@ public class ListarSeminarios extends Activity implements OnItemClickListener{
 		listView = (ListView) findViewById(R.id.lista_seminarios);
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_1);
-		listView.setAdapter(adapter); 
+		listView.setAdapter(adapter);
+	       	listView.setClickable(true);
+		listView.setOnItemClickListener(this);	
 
 		//Vai preencher com o nome dos seminarios
 		Log.d(LOG, url);

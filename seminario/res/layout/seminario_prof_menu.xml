@@ -7,7 +7,7 @@
    <Button
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
-       android:text="@string/receber_confirm"
+       android:text="@string/receber_confirm_op"
        android:onClick="profBlueTooth"
    />
    <Button
