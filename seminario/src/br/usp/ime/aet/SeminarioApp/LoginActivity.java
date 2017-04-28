@@ -62,7 +62,7 @@ public class LoginActivity extends Activity {
 			Log.d(LOG, token.getString("success"));
 
 			if( token.getString("success").equals("true")){
-				//cria um objeto usuario para ser passado para as proximas activitys 
+				//cria um objeto usuario para ser passado para as proximas activitys
 				//que precisasem das informacoes do usuario
 				JSONObject data = token.getJSONObject("data");
 				name = data.getString("name");
@@ -104,7 +104,6 @@ public class LoginActivity extends Activity {
 						i = new Intent(LoginActivity.this, MenuProf.class);
 					}
 					else{
-						
 						i = new Intent(LoginActivity.this, MenuAluno.class);
 					}
 					i.putExtra("nusp", nusp);

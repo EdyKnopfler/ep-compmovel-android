@@ -9,10 +9,13 @@ import org.json.JSONObject;
 public class ThreadProfessorRecebe extends Thread {
 
    private BluetoothSocket btSocket;
+   private String idSeminario;
    private ComunicacaoThreadUI ui;
 
-   public ThreadProfessorRecebe(BluetoothSocket socket, ComunicacaoThreadUI ui) {
+   public ThreadProfessorRecebe(BluetoothSocket socket, String idSeminario,
+                                ComunicacaoThreadUI ui) {
       this.btSocket = socket;
+      this.idSeminario = idSeminario;
       this.ui = ui;
    }
 
@@ -32,7 +35,7 @@ public class ThreadProfessorRecebe extends Thread {
 
   			HashMap<String, String> params = new HashMap<String, String>();
   			params.put("nusp", nusp);
-  			// params.put("seminar_id", semId);  // Tem que enviar o ID do Seminário :P
+  			params.put("seminar_id", idSeminario);
   			String resposta = HttpRequest
   			      .post(Consts.SERVIDOR + "attendence/submit")
   					.form(params)

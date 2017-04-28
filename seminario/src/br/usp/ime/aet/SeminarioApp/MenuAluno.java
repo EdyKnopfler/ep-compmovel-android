@@ -7,16 +7,20 @@ import android.content.Intent;
 
 public class MenuAluno extends Activity {
 
+   private String nusp;
+
    @Override
    public void onCreate(Bundle savedInstanceState) {
       super.onCreate(savedInstanceState);
       setContentView(R.layout.aluno_menu);
+      nusp = getIntent().getStringExtra("nusp");
    }
 
    public void alterarCadastro(View v) {
 	   Intent i;
 	   i = new Intent(this, AlterarCadastro.class);
 	   i.putExtra("tipo", "aluno");
+      i.putExtra("nusp", nusp);
 	   startActivity(i);
    }
 
@@ -24,8 +28,8 @@ public class MenuAluno extends Activity {
 	   Intent i;
 	   i = new Intent(this, ListarSeminarios.class);
       i.putExtra("tipo", "aluno");
+      i.putExtra("nusp", nusp);
 	   startActivity(i);
-
    }
 
 }

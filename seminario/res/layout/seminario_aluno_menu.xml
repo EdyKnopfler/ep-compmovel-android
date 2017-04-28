@@ -4,6 +4,11 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     >
+    <TextView
+       android:id="@+id/nome_sem"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+   />
    <Button
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
@@ -14,7 +19,6 @@
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
        android:text="@string/comprovar_presenca_qr_code"
-       android:onClick="comprovarPresencaQRCode"       
+       android:onClick="comprovarPresencaQRCode"
    />
 </LinearLayout>
-

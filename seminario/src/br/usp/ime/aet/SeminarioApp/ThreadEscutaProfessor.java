@@ -7,10 +7,12 @@ import java.util.UUID;
 
 public class ThreadEscutaProfessor extends Thread {
 
+   private String idSeminario;
    private ComunicacaoThreadUI ui;
    private BluetoothServerSocket btServerSocket;
 
-   public ThreadEscutaProfessor(ComunicacaoThreadUI ui) {
+   public ThreadEscutaProfessor(String idSeminario, ComunicacaoThreadUI ui) {
+      this.idSeminario = idSeminario;
       this.ui = ui;
    }
 
@@ -23,7 +25,7 @@ public class ThreadEscutaProfessor extends Thread {
 
          while (true) {
             BluetoothSocket btSocket = btServerSocket.accept();
-            Thread recebimento = new ThreadProfessorRecebe(btSocket, ui);
+            Thread recebimento = new ThreadProfessorRecebe(btSocket, idSeminario, ui);
             recebimento.start();
          }
       }

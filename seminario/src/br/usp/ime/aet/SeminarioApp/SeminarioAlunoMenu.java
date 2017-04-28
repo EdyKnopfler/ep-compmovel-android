@@ -3,39 +3,31 @@ package br.usp.ime.aet.SeminarioApp;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
-import android.content.Intent;
 import android.widget.TextView;
-import android.widget.ListView;
-import android.widget.ArrayAdapter;
-import java.util.HashMap;
-import com.github.kevinsawicki.http.HttpRequest;
-import org.json.JSONObject;
-import org.json.JSONArray;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
+import android.content.Intent;
 
 import android.util.Log;
 
 public class SeminarioAlunoMenu extends Activity {
 
-	private static final int ALTERACAO_SEMINARIO = 222;
-	private static final String LOG = "sam";
-
-	private String id, nome;
+	private String nuspAluno, idSem, nomeSem;
 	private TextView tvNome;
-	private ListView lista;
-	private ArrayAdapter adapter;
 
    @Override
    public void onCreate(Bundle savedInstanceState) {
       super.onCreate(savedInstanceState);
       setContentView(R.layout.seminario_aluno_menu);
-      id = getIntent().getStringExtra("id");
-      nome = getIntent().getStringExtra("nome");
+      idSem = getIntent().getStringExtra("id");
+      nomeSem = getIntent().getStringExtra("nome");
+		nuspAluno = getIntent().getStringExtra("nusp");
+		tvNome = (TextView) findViewById(R.id.nome_sem);
+		tvNome.setText(nomeSem);
    }
 
    public void comprovarPresencaBlueTooth() {
-
+		Intent i = new Intent(this, AlunoConfirmBluetooth.class);
+		i.putExtra("nusp", nuspAluno);
+		startActivity(i);
    }
 
    public void comprovarPresencaQRCode(){

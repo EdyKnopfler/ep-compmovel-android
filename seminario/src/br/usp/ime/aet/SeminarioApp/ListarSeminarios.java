@@ -77,15 +77,14 @@ public class ListarSeminarios extends Activity implements OnItemClickListener{
 		Intent i;
 		if (tipo.equals("prof")) {
 			i = new Intent(this, SeminarioProfMenu.class);
-		}else
-		{
-			i = new Intent(this, SeminarioAlunoMenu.class);
 		}
-			// TODO: criar a SeminarioAlunoMenu
-			i.putExtra("id", seminarios.get(nomeSem));
-			i.putExtra("nome", nomeSem);
-			startActivityForResult(i, ALTERACAO_SEMINARIO);
-		
+		else {
+			i = new Intent(this, SeminarioAlunoMenu.class);
+			i.putExtra("nusp", getIntent().getStringExtra("nusp"));
+		}
+		i.putExtra("id", seminarios.get(nomeSem));
+		i.putExtra("nome", nomeSem);
+		startActivityForResult(i, ALTERACAO_SEMINARIO);
 	}
 
 	@Override

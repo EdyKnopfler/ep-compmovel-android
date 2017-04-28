@@ -10,6 +10,7 @@ public class ProfessorConfirmBluetooth extends TelaBluetooth {
 
    private static final int ACAO_VISIBILIDADE = 2;
 
+   private String idSeminario;
    private boolean visivel;
    private ThreadEscutaProfessor escuta;
 
@@ -17,6 +18,7 @@ public class ProfessorConfirmBluetooth extends TelaBluetooth {
    public void onCreate(Bundle savedInstanceState) {
       super.onCreate(savedInstanceState);
       setContentView(R.layout.prof_confirm_bluetooth);
+      idSeminario = getIntent().getStringExtra("id_seminario");
    }
 
    @Override
@@ -55,7 +57,7 @@ public class ProfessorConfirmBluetooth extends TelaBluetooth {
    }
 
    private void iniciarEscuta() {
-      escuta = new ThreadEscutaProfessor(new ComunicacaoThreadUI(this));
+      escuta = new ThreadEscutaProfessor(idSeminario, new ComunicacaoThreadUI(this));
       escuta.start();
    }
 

@@ -64,7 +64,9 @@ public class SeminarioProfMenu extends Activity {
 	}
 
    public void profBlueTooth(View v) {
-		// TODO aqui chamará a tela de bluetooth :)
+		Intent i = new Intent(this, ProfessorConfirmBluetooth.class);
+		i.putExtra("id_seminario", id);
+		startActivity(i);
    }
 
 	public void alterar(View v){
