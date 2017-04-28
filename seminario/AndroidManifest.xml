@@ -28,6 +28,7 @@
 		<activity android:name=".CadastroSeminario" />
 		<activity android:name=".ListarSeminarios" />	
 		<activity android:name=".SeminarioProfMenu" />
+		<activity android:name=".SeminarioAlunoMenu" />
 	
     </application>
 
