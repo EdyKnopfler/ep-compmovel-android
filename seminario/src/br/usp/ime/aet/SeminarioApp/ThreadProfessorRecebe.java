@@ -6,6 +6,8 @@ import java.util.HashMap;
 import com.github.kevinsawicki.http.HttpRequest;
 import org.json.JSONObject;
 
+import android.util.Log;
+
 public class ThreadProfessorRecebe extends Thread {
 
    private BluetoothSocket btSocket;
@@ -25,13 +27,16 @@ public class ThreadProfessorRecebe extends Thread {
          byte[] buffer = new byte[1024];
          InputStream leitura = btSocket.getInputStream();
          int lidos = leitura.read(buffer);
+         Log.d("X", "recebi");
          btSocket.close();
+         Log.d("X", "fechei o socket");
          byte[] bDados = new byte[lidos];
 
          for (int i = 0; i < lidos; i++)
             bDados[i] = buffer[i];
 
          String nusp = new String(bDados);
+         Log.d("X", "nusp = " + nusp);
 
   			HashMap<String, String> params = new HashMap<String, String>();
   			params.put("nusp", nusp);
@@ -54,6 +59,7 @@ public class ThreadProfessorRecebe extends Thread {
                   json.getString("message"));
       }
       catch (Exception ex) {
+         Log.d("X", "DEU XABLÁU!\n", ex);
          ui.mensagemSimples("ERRO!", ex.getMessage());
       }
    }

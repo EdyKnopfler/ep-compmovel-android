@@ -24,13 +24,13 @@ public class SeminarioAlunoMenu extends Activity {
 		tvNome.setText(nomeSem);
    }
 
-   public void comprovarPresencaBlueTooth() {
+   public void comprovarPresencaBlueTooth(View v) {
 		Intent i = new Intent(this, AlunoConfirmBluetooth.class);
 		i.putExtra("nusp", nuspAluno);
 		startActivity(i);
    }
 
-   public void comprovarPresencaQRCode(){
+   public void comprovarPresencaQRCode(View v){
 
    }
 }

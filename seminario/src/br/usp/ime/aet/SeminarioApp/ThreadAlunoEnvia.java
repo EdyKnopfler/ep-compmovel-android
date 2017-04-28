@@ -6,6 +6,8 @@ import android.bluetooth.BluetoothSocket;
 import java.util.UUID;
 import java.io.OutputStream;
 
+import android.util.Log;
+
 public class ThreadAlunoEnvia extends Thread {
 
    private String enderecoProf, nusp;
@@ -18,7 +20,6 @@ public class ThreadAlunoEnvia extends Thread {
       this.ui = ui;
    }
 
-
    @Override
    public void run() {
       try {
@@ -27,14 +28,18 @@ public class ThreadAlunoEnvia extends Thread {
          btSocket = disp.createRfcommSocketToServiceRecord(UUID.fromString(
                Consts.uuid));
          btSocket.connect();
+         Log.d("X", "conectei");
          OutputStream saida = btSocket.getOutputStream();
          saida.write(nusp.getBytes());
-         btSocket.close();
+         Log.d("X", "enviei " + nusp);
+         //btSocket.close();
+         //Log.d("X", "fechei o socket");
          ui.mensagemSimples(ui.pegarString(R.string.conf_pres_titulo),
                             ui.pegarString(R.string.conf_env_prof) + ": " + nusp);
          ui.fecharTela();
       }
       catch (Exception ex) {
+         Log.d("X", "DEU XABLÁU!\n", ex);
          ui.mensagemSimples("ERRO!", ui.pegarString(R.string.btooth_falha_aluno));
       }
    }
