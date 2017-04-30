@@ -56,7 +56,7 @@ public class CadastroUsuario extends Activity {
 				alertMessage = getResources().getString(R.string.usuario_cadastrado);
 			}else{
 				alertTitle = getResources().getString(R.string.falha);
-				alertMessage = getResources().getString(R.string.dados_incorretos);
+				alertMessage = token.getString("message");
 
 			}
 			AlertDialog.Builder alert = new AlertDialog.Builder(this);
@@ -64,7 +64,8 @@ public class CadastroUsuario extends Activity {
 			alert.setMessage(alertMessage);
 			alert.setPositiveButton("OK", null);
 			alert.show();
-
+			if(token.getString("success").equals("true"))
+				finish();
 		}
 		catch (Exception e) {
 			Log.d(LOG, "\n\nDeu xabláu!", e);
