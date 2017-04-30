@@ -49,12 +49,14 @@ public class SeminarioProfMenu extends Activity {
 			JSONObject token = new JSONObject(json);
 
 			if (token.getString("success").equals("true")){
-				// TODO Estou fazendo uma suposição sobre o formato dos dados no servidor :P
 				JSONArray data = token.getJSONArray("data");
 				for (int j = 0; j < data.length(); j++){
-					String nusp = data.getJSONObject(j).getString("nusp");
-					String name = data.getJSONObject(j).getString("name");
-					adapter.add(nusp + " - " + name);
+					String nusp = data.getJSONObject(j).getString("student_nusp");
+					url = Consts.SERVIDOR + "student/get/" + nusp;
+					json = HttpRequest.get(url).body();
+					JSONObject res = new JSONObject(json);
+					JSONObject aluno = res.getJSONObject("data");
+					adapter.add(nusp + " - " + aluno.getString("name"));
 				}
 			}
 		}
@@ -88,7 +90,7 @@ public class SeminarioProfMenu extends Activity {
 
 	@Override
    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-      if (requestCode == ALTERACAO_SEMINARIO)
+      if (requestCode == ALTERACAO_SEMINARIO && resultCode == RESULT_OK)
 			tvNome.setText(data.getStringExtra("name"));
 	}
 

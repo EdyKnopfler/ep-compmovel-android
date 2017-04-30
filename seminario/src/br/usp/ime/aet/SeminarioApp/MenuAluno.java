@@ -32,4 +32,10 @@ public class MenuAluno extends Activity {
 	   startActivity(i);
    }
 
+   public void seminariosQueAssisti(View v) {
+		Intent i = new Intent(this, SeminariosDoAluno.class);
+		i.putExtra("nusp", nusp);
+		startActivity(i);
+	}
+
 }

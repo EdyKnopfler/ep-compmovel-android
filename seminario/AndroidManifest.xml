@@ -26,10 +26,10 @@
 		<activity android:name=".CadastroUsuario" />
 		<activity android:name=".AlterarCadastro" />
 		<activity android:name=".CadastroSeminario" />
-		<activity android:name=".ListarSeminarios" />	
+		<activity android:name=".ListarSeminarios" />
 		<activity android:name=".SeminarioProfMenu" />
-		<activity android:name=".SeminarioAlunoMenu" />
-	
+      <activity android:name=".SeminarioAlunoMenu" />
+      <activity android:name=".SeminariosDoAluno" />	
     </application>
 
 </manifest>

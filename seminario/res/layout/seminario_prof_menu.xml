@@ -28,9 +28,14 @@
        android:text="@string/excluir"
        android:onClick="excluir"
    />
+   <TextView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="@string/alunos_seminario"
+   />
    <ListView
        android:id="@+id/lista_alunos"
-       android:layout_width="wrap_content"
-       android:layout_height="match_parent"
-       />
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+    />
 </LinearLayout>

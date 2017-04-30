@@ -50,4 +50,6 @@
     <string name="conf_excluir">Confirma a exclusão?</string>
     <string name="sim">Sim</string>
     <string name="nao">Não</string>
+    <string name="alunos_seminario">Alunos que compareceram:</string>
+    <string name="seminarios_assisti">Seminários que assisti</string>
 </resources>

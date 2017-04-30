@@ -14,8 +14,12 @@
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
        android:text="@string/listar_seminarios"
-       android:onClick="listarSeminarios"       
+       android:onClick="listarSeminarios"
    />
-
+   <Button
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:text="@string/seminarios_assisti"
+       android:onClick="seminariosQueAssisti"
+   />
 </LinearLayout>
-

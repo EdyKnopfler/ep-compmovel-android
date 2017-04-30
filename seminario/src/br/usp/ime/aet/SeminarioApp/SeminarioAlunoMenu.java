@@ -33,4 +33,5 @@ public class SeminarioAlunoMenu extends Activity {
    public void comprovarPresencaQRCode(View v){
 
    }
+
 }
