@@ -2,6 +2,7 @@ package br.usp.ime.aet.SeminarioApp;
 
 import android.bluetooth.BluetoothSocket;
 import java.io.InputStream;
+import java.io.IOException;
 import java.util.HashMap;
 import com.github.kevinsawicki.http.HttpRequest;
 import org.json.JSONObject;
@@ -23,6 +24,8 @@ public class ThreadProfessorRecebe extends Thread {
 
    @Override
    public void run() {
+      byte bDados[];
+
       try {
          byte[] buffer = new byte[1024];
          InputStream leitura = btSocket.getInputStream();
@@ -30,22 +33,27 @@ public class ThreadProfessorRecebe extends Thread {
          Log.d("X", "recebi");
          btSocket.close();
          Log.d("X", "fechei o socket");
-         byte[] bDados = new byte[lidos];
+         bDados = new byte[lidos];
 
          for (int i = 0; i < lidos; i++)
             bDados[i] = buffer[i];
+      }
+      catch (IOException e) {
+         ui.mensagemSimples(ui.pegarString(R.string.falha),
+                            ui.pegarString(R.string.falha_btooth_prof));
+         return;
+      }
 
-         String nusp = new String(bDados);
-         Log.d("X", "nusp = " + nusp);
+      String nusp = new String(bDados);
+      Log.d("X", "nusp = " + nusp);
 
-  			HashMap<String, String> params = new HashMap<String, String>();
-  			params.put("nusp", nusp);
-  			params.put("seminar_id", idSeminario);
-  			String resposta = HttpRequest
-  			      .post(Consts.SERVIDOR + "attendence/submit")
-  					.form(params)
-  					.body();
+      HashMap<String, String> params = new HashMap<String, String>();
+      params.put("nusp", nusp);
+      params.put("seminar_id", idSeminario);
+      String url = Consts.SERVIDOR + "attendence/submit";
 
+      try {
+  			String resposta = HttpRequest.post(url).form(params).body();
   			JSONObject json = new JSONObject(resposta);
 
          if (json.getString("success").equals("true"))
@@ -59,8 +67,9 @@ public class ThreadProfessorRecebe extends Thread {
                   json.getString("message"));
       }
       catch (Exception ex) {
-         Log.d("X", "DEU XABLÁU!\n", ex);
-         ui.mensagemSimples("ERRO!", ex.getMessage());
+         new Cache(ui.getTela()).salvar(params, url);
+         ui.mensagemSimples(ui.pegarString(R.string.falha_conexao),
+                            ui.pegarString(R.string.salvo_cache));
       }
    }
 

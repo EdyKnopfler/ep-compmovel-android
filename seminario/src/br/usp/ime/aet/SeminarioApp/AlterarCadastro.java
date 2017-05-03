@@ -37,11 +37,13 @@ public class AlterarCadastro extends Activity {
 			url = Consts.SERVIDOR + "student/edit";
 
 		Log.d(LOG, nusp + " " + pass);
+		AlertDialog.Builder alert = new AlertDialog.Builder(this);
+		alert.setPositiveButton("OK", null);
+		HashMap<String, String> data = new HashMap<String, String>();
+		data.put("nusp", nusp);
+		data.put("pass", pass);
+		data.put("name", name);
 		try {
-			HashMap<String, String> data = new HashMap<String, String>();
-			data.put("nusp", nusp);
-			data.put("pass", pass);
-			data.put("name", name);
 			String json = HttpRequest
 				.post(url)
 				.form(data)
@@ -57,17 +59,17 @@ public class AlterarCadastro extends Activity {
 			}else{
 				alertTitle = getResources().getString(R.string.falha);
 				alertMessage = getResources().getString(R.string.dados_incorretos);
-
 			}
-			AlertDialog.Builder alert = new AlertDialog.Builder(this);
 			alert.setTitle(alertTitle);
 			alert.setMessage(alertMessage);
-			alert.setPositiveButton("OK", null);
 			alert.show();
 
 		}
 		catch (Exception e) {
-			Log.d(LOG, "\n\nDeu xabláu!", e);
+			new Cache(this).salvar(data, url);
+			alert.setTitle(getResources().getString(R.string.falha_conexao));
+			alert.setMessage(getResources().getString(R.string.salvo_cache));
+			alert.show();
 		}
 
 	}

@@ -7,12 +7,16 @@ import android.app.AlertDialog;
 public class ComunicacaoThreadUI {
 
    private Activity tela;
-   
+
    // Que tela está rodando?
    public ComunicacaoThreadUI(Activity tela) {
       this.tela = tela;
    }
-   
+
+   public Activity getTela() {
+      return tela;
+   }
+
    public void mensagemSimples(final String titulo, final String mensagem) {
       tela.runOnUiThread(new Runnable() {
          @Override
@@ -21,11 +25,11 @@ public class ComunicacaoThreadUI {
             alert.setTitle(titulo);
             alert.setMessage(mensagem);
             alert.setPositiveButton("OK", null);
-            alert.show(); 
+            alert.show();
          }
       });
    }
-   
+
    public void fecharTela() {
       tela.runOnUiThread(new Runnable() {
          @Override
@@ -34,7 +38,7 @@ public class ComunicacaoThreadUI {
          }
       });
    }
-   
+
    public String pegarString(int id) {
       return tela.getResources().getString(id);
    }

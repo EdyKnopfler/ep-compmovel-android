@@ -79,7 +79,12 @@ public class CadastroSeminario extends Activity {
 
 		}
 		catch (Exception e) {
-			Log.d(LOG, "\n\nDeu xabláu!", e);
+			new Cache(this).salvar(data, url);
+			AlertDialog.Builder alert = new AlertDialog.Builder(this);
+			alert.setPositiveButton("OK", null);
+			alert.setTitle(getResources().getString(R.string.falha_conexao));
+			alert.setMessage(getResources().getString(R.string.salvo_cache));
+			alert.show();
 		}
 
 	}
