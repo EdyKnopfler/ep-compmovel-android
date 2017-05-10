@@ -30,6 +30,7 @@
 		<activity android:name=".SeminarioProfMenu" />
       <activity android:name=".SeminarioAlunoMenu" />
       <activity android:name=".SeminariosDoAluno" />
+      <activity android:name=".GerarQRCode" />
     </application>
 
 </manifest>
