@@ -15,7 +15,14 @@
        android:layout_height="wrap_content"
        android:text="@string/receber_confirm_op"
        android:onClick="profBlueTooth"
+       />
+   <Button
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:text="@string/gerar_qr_code"
+       android:onClick="gerarQrCode"
    />
+
    <Button
        android:layout_width="match_parent"
        android:layout_height="wrap_content"

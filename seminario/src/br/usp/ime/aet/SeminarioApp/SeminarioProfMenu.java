@@ -71,6 +71,12 @@ public class SeminarioProfMenu extends Activity {
 		startActivity(i);
    }
 
+   public void gerarQrCode(View v){
+		Intent i = new Intent(this, GerarQrCode.class);
+		i.putExtra("id_seminario", id);
+		startActivity(i);
+   }
+
 	public void alterar(View v){
 		Intent i = new Intent(this, CadastroSeminario.class);
 		i.putExtra("id", id);

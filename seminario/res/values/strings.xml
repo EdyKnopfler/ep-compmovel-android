@@ -56,4 +56,5 @@
     <string name="falha_conexao">Falha na conexão</string>
     <string name="salvo_cache">Os dados foram guardados para envio quando o app for reinicializado.</string>
     <string name="cache_enviado">Dados guardados localmente foram enviados com sucesso.</string>
+    <string name="gerar_qr_code">Gerar Qr Code</string>
 </resources>
