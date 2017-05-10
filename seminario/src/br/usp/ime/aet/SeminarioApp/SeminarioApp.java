@@ -10,6 +10,8 @@ import com.github.kevinsawicki.http.HttpRequest;
 import org.json.JSONObject;
 import android.app.AlertDialog;
 
+import android.util.Log;
+
 public class SeminarioApp extends Activity {
 
    private Cache cache;
@@ -40,6 +42,9 @@ public class SeminarioApp extends Activity {
 
          try {
             for (Cache.PostPendente p : posts) {
+
+               Log.d("X", p.url + "\n" + p.strParams + "\n");
+
                String json = HttpRequest.post(p.url).form(p.params).body();
                JSONObject token = new JSONObject(json);
                reenviouAlgo = token.getString("success").equals("true");

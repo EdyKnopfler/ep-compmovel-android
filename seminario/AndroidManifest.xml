@@ -29,7 +29,7 @@
 		<activity android:name=".ListarSeminarios" />
 		<activity android:name=".SeminarioProfMenu" />
       <activity android:name=".SeminarioAlunoMenu" />
-      <activity android:name=".SeminariosDoAluno" />	
+      <activity android:name=".SeminariosDoAluno" />
     </application>
 
 </manifest>
