@@ -24,8 +24,9 @@ public class GerarQRCode extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.gerar_qrcode);
         ImageView imageView = (ImageView) findViewById(R.id.qrCode);
-        try {
-            Bitmap bitmap = encodeAsBitmap("hello world");
+ 	
+ 	try {
+            Bitmap bitmap = encodeAsBitmap(getIntent().getStringExtra("id_seminario"));
             imageView.setImageBitmap(bitmap);
         } catch (WriterException e) {}
     }
