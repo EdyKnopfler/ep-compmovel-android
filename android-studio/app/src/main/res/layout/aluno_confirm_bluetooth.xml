@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+
+   <TextView
+       android:layout_width="fill_parent"
+       android:layout_height="wrap_content"
+       android:text="@string/celular_prof"
+       />
+   
+   <ProgressBar
+       android:id="@+id/progresso"
+       style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Horizontal"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:indeterminate="true"
+       android:visibility="gone"
+       />
+
+   <LinearLayout
+       android:id="@+id/nenhum_disp_encontrado"
+       android:orientation="vertical"
+       android:layout_width="fill_parent"
+       android:layout_height="wrap_content"
+       android:visibility="gone">
+      
+      <TextView
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:text="@string/nenhum_disp_encontrado"
+          />
+      
+      <Button
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:text="@string/tentar_novamente"
+          android:onClick="tentarNovamente"
+          />
+   
+   </LinearLayout>
+
+   <ListView
+       android:id="@+id/lista_dispositivos"
+       android:layout_width="fill_parent"
+       android:layout_height="fill_parent"
+       />
+
+</LinearLayout>
+

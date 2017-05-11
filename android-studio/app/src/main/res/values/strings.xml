@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AppSeminários</string>
+    <string name="bluetooth_nao_detect">Hardware Bluetooth não detectado...</string>
+    <string name="celular_prof">O celular do professor está por perto?</string>
+    <string name="receber_confirm_op">Receber Confirmações por Bluetooth.</string>
+    <string name="receber_confirm">Vamos receber confirmações de alunos por Bluetooth!
+                                   Aproxime um aparelho.</string>
+    <string name="nenhum_disp_encontrado">Nenhum dispositivo foi encontrado!</string>
+    <string name="tentar_novamente">Tentar novamente</string>
+    <string name="conexao_falhou">Conexão com o celular do professor falhou!</string>
+    <string name="nusp">Número USP</string>
+    <string name="password">Senha</string>
+    <string name="confirm">Confirmar</string>
+    <string name="professor">Professor</string>
+    <string name="aluno">Aluno</string>
+    <string name="falha_login">Falha de Login</string>
+    <string name="login_incorreto">N.USP ou senha incorretos</string>
+    <string name="alterar_cadastro">Alterar Cadastro</string>
+    <string name="listar_seminarios">Listar Seminários</string>
+    <string name="confirmar_presenca">Confirmar Presença</string>
+    <string name="cadastrar_seminario">Cadastrar Seminário</string>
+    <string name="cadastre_se">Cadastre-se</string>
+    <string name="name">Nome</string>
+    <string name="sucesso">Sucesso</string>
+    <string name="usuario_cadastrado">Usuario cadastrado com sucesso</string>
+    <string name="falha">Falha</string>
+    <string name="dados_incorretos">Dados incorretos</string>
+    <string name="usuario_alterado">Cadastro do usuario alterado com sucesso</string>
+    <string name="sucesso_operacao">Operação realizada com sucesso</string>
+    <string name="falha_operacao">Falha na operação</string>
+    <string name="lista_seminarios">Lista de Seminários</string>
+    <string name="nenhum_seminario_encontrado">Nenhum Seminário Encontrado</string>
+    <string name="comprovar_presenca_bluetooth">Comprovar Presença por BlueTooth</string>
+    <string name="comprovar_presenca_qr_code">Comprovar Presença por QRCode</string>
+    <string name="listar_alunos">Listar Alunos Presentes</string>
+    <string name="conf_pres_titulo">Confirmação de Presença</string>
+    <string name="conf_env_prof">Enviada para o professor a confirmação do NUSP </string>
+    <string name="conf_pres_nusp">A presença do aluno NUSP</string>
+    <string name="conf_sucesso">confirmada com sucesso</string>
+    <string name="falhou_mensagem">falhou com a seguinte mensagem do servidor</string>
+    <string name="btooth_falha_aluno">
+      Não conseguiu conectar-se ao professor.\n
+      Verifique se:\n
+      - foi selecionado o aparelho correto\n
+      - o professor autorizou o pareamento
+    </string>
+    <string name="falha_btooth_prof">Não conseguiu receber o NUSP.</string>
+    <string name="alterar">Alterar</string>
+    <string name="excluir">Excluir</string>
+    <string name="conf_excluir">Confirma a exclusão?</string>
+    <string name="sim">Sim</string>
+    <string name="nao">Não</string>
+    <string name="alunos_seminario">Alunos que compareceram:</string>
+    <string name="seminarios_assisti">Seminários que assisti</string>
+    <string name="falha_conexao">Falha na conexão</string>
+    <string name="salvo_cache">Os dados foram guardados para envio quando o app for reinicializado.</string>
+    <string name="cache_enviado">Dados guardados localmente foram enviados com sucesso.</string>
+</resources>
