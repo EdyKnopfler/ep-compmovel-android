@@ -9,8 +9,8 @@ public class MenuProf extends Activity {
 
    @Override
    public void onCreate(Bundle savedInstanceState) {
-      super.onCreate(savedInstanceState);
-      setContentView(R.layout.prof_menu);
+       super.onCreate(savedInstanceState);
+       setContentView(R.layout.prof_menu);
    }
 
    public void alterarCadastro(View v) {
@@ -30,7 +30,7 @@ public class MenuProf extends Activity {
    public void listarSeminarios(View v){
 	   Intent i;
 	   i = new Intent(this, ListarSeminarios.class);
-      i.putExtra("tipo", "prof");
+       i.putExtra("tipo", "prof");
 	   startActivity(i);
    }
 

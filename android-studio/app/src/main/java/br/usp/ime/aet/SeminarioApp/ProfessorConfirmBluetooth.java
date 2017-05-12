@@ -1,8 +1,6 @@
 package br.usp.ime.aet.SeminarioApp;
 
 import android.os.Bundle;
-import android.widget.TextView;
-import android.view.View;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
 

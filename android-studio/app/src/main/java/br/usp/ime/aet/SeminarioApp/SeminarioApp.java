@@ -10,8 +10,6 @@ import com.github.kevinsawicki.http.HttpRequest;
 import org.json.JSONObject;
 import android.app.AlertDialog;
 
-import android.util.Log;
-
 public class SeminarioApp extends Activity {
 
    private Cache cache;
@@ -41,11 +39,8 @@ public class SeminarioApp extends Activity {
          if (posts.size() == 0) return null;
 
          try {
-            for (Cache.PostPendente p : posts) {
-
-               Log.d("X", p.url + "\n" + p.strParams + "\n");
-
-               String json = HttpRequest.post(p.url).form(p.params).body();
+             for (Cache.PostPendente p : posts) {
+               String json = HttpRequest.post(Consts.SERVIDOR + p.url).form(p.params).body();
                JSONObject token = new JSONObject(json);
                reenviouAlgo = token.getString("success").equals("true");
                // Não tentaremos reenviar coisas que deram erro no servidor
@@ -69,6 +64,7 @@ public class SeminarioApp extends Activity {
          catch (Exception e) {
             // Pode ignorar? afinal, bastaria manter no cache para os
             // próximos envios
+             e.printStackTrace();
          }
 
          return null;

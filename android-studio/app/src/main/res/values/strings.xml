@@ -56,6 +56,7 @@
     <string name="seminarios_assisti">Seminários que assisti</string>
     <string name="falha_conexao">Falha na conexão</string>
     <string name="salvo_cache">Os dados foram guardados para envio quando o app for reinicializado.</string>
+    <string name="enviando_cache">Enviando dados guardados...</string>
     <string name="cache_enviado">Dados guardados localmente foram enviados com sucesso.</string>
     <string name="gerar_qr_code">Gerar Qr Code</string>
     <string name="ok">OK</string>

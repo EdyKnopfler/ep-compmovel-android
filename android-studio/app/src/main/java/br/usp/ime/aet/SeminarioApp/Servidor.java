@@ -1,20 +1,28 @@
 package br.usp.ime.aet.SeminarioApp;
 
 import com.github.kevinsawicki.http.HttpRequest;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.HashMap;
 import android.app.Activity;
-import android.util.Log;
 
+/**
+ * Tratamos aqui todos os detalhes das respostas do servidor, que não seguem um padrão muito bem
+ * definido...
+ */
 public class Servidor {
 
-    public static abstract class Callback {
+    public static class Callback {
 
         private ComunicacaoThreadUI ui;
 
-        abstract void sucesso();
+        /** sobrescrito quando os dados interessam */
+        void sucesso(JSONObject resposta) {
+            sucesso();
+        }
+
+        /** sobrescrito quando os dados não interessam */
+        void sucesso() {}
 
         void erroDadoInvalido(String msg) {
             ui.mensagemSimples(ui.pegarString(R.string.falha_operacao),
@@ -36,35 +44,41 @@ public class Servidor {
         this.callback.setUi(ui);
     }
 
-    public void get(String url) {
-        try {
-            Log.d("X", "fazendo get");
-            String json = HttpRequest.get(Consts.SERVIDOR + url).body();
-            chamarCallback(new JSONObject(json));
-        }
-        catch (Exception ex) {
-            Log.d("X", "erro no get");
-            ui.mensagemSimples("", ui.pegarString(R.string.falha_conexao));
-        }
+    public void get(final String url) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    String json = HttpRequest.get(Consts.SERVIDOR + url).body();
+                    chamarCallback(new JSONObject(json));
+                }
+                catch (Exception ex) {
+                    ui.mensagemSimples("", ui.pegarString(R.string.falha_conexao));
+                }
+            }
+        }).start();
     }
 
-    public void post(String url, HashMap<String, String> params, boolean fazerCache) {
-        try {
-            Log.d("X", "fazendo post");
-            String json = HttpRequest.post(Consts.SERVIDOR + url).form(params).body();
-            chamarCallback(new JSONObject(json));
-        }
-        catch (Exception ex) {
-            Log.d("X", "erro no post");
-            if (fazerCache) {
-                new Cache(ui.getTela()).salvar(params, url);
-                ui.mensagemSimples(ui.pegarString(R.string.falha_conexao),
-                        ui.pegarString(R.string.salvo_cache));
-                Log.d("X", "fiz cache");
+    public void post(final String url, final HashMap<String, String> params,
+                     final boolean fazerCache) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    String json = HttpRequest.post(Consts.SERVIDOR + url).form(params).body();
+                    chamarCallback(new JSONObject(json));
+                }
+                catch (Exception ex) {
+                    if (fazerCache) {
+                        new Cache(ui.getTela()).salvar(params, url);
+                        ui.mensagemSimples(ui.pegarString(R.string.falha_conexao),
+                                ui.pegarString(R.string.salvo_cache));
+                    }
+                    else
+                        ui.mensagemSimples("", ui.pegarString(R.string.falha_conexao));
+                }
             }
-            else
-                ui.mensagemSimples("", ui.pegarString(R.string.falha_conexao));
-        }
+        }).start();
     }
 
     private void chamarCallback(final JSONObject resposta) {
@@ -73,12 +87,15 @@ public class Servidor {
             public void run() {
                 try {
                     if (resposta.getString("success").equals("true"))
-                        callback.sucesso();
+                        callback.sucesso(resposta);
                     else if (resposta.has("message"))
                         callback.erroDadoInvalido(resposta.getString("message"));
                     else
                         callback.erroDadoInvalido(ui.pegarString(R.string.falha_operacao));
-                } catch (JSONException e) {}
+                }
+                catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }
