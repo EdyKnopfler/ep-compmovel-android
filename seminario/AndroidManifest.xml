@@ -8,6 +8,7 @@
 	<uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
 	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 	<uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="android.permission.CAMERA" />
 
 	<application android:label="@string/app_name" android:icon="@drawable/ic_launcher">
 		<activity android:name="SeminarioApp"
@@ -30,6 +31,7 @@
 		<activity android:name=".SeminarioProfMenu" />
       <activity android:name=".SeminarioAlunoMenu" />
       <activity android:name=".SeminariosDoAluno" />
+      <activity android:name=".GerarQRCode" />
     </application>
 
 </manifest>

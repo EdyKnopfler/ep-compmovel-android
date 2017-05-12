@@ -1,15 +1,20 @@
+
 package br.usp.ime.aet.SeminarioApp;
 
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 import android.content.Intent;
+import android.app.AlertDialog;
 
 import android.util.Log;
 
 public class SeminarioAlunoMenu extends Activity {
 
+	private final static	String LOG = "QR";
 	private String nuspAluno, idSem, nomeSem;
 	private TextView tvNome;
 
@@ -31,7 +36,30 @@ public class SeminarioAlunoMenu extends Activity {
    }
 
    public void comprovarPresencaQRCode(View v){
-
+	IntentIntegrator intentIntegrator = new IntentIntegrator(this); // where this is activity 
+	intentIntegrator.initiateScan(IntentIntegrator.ALL_CODE_TYPES); // or QR_CODE_TYPES if you need to scan QR	
    }
+@Override
+public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+    IntentResult result = 
+        IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
+    if (result != null) {
+        String contents = result.getContents();
+        if (contents != null) {
+            showDialog(R.string.sucesso, result.toString());
+        } else {
+            showDialog(R.string.falha,
+                getString(R.string.falha_operacao));
+        }
+    }
+}
+
+private void showDialog(int title, CharSequence message) {
+    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+    builder.setTitle(title);
+    builder.setMessage(message);
+    builder.setPositiveButton(R.string.ok, null);
+    builder.show();
+}
 
 }
