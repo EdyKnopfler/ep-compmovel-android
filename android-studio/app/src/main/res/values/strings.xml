@@ -23,7 +23,8 @@
     <string name="cadastre_se">Cadastre-se</string>
     <string name="name">Nome</string>
     <string name="sucesso">Sucesso</string>
-    <string name="usuario_cadastrado">Usuario cadastrado com sucesso</string>
+    <string name="usuario_cadastrado">Usuário cadastrado com sucesso</string>
+    <string name="seminario_cadastrado">Seminário cadastrado com sucesso</string>
     <string name="falha">Falha</string>
     <string name="dados_incorretos">Dados incorretos</string>
     <string name="usuario_alterado">Cadastro do usuario alterado com sucesso</string>
@@ -56,4 +57,7 @@
     <string name="falha_conexao">Falha na conexão</string>
     <string name="salvo_cache">Os dados foram guardados para envio quando o app for reinicializado.</string>
     <string name="cache_enviado">Dados guardados localmente foram enviados com sucesso.</string>
+    <string name="gerar_qr_code">Gerar Qr Code</string>
+    <string name="ok">OK</string>
+
 </resources>

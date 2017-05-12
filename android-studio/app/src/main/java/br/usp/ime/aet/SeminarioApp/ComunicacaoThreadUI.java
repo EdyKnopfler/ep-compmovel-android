@@ -40,7 +40,11 @@ public class ComunicacaoThreadUI {
    }
 
    public String pegarString(int id) {
-      return tela.getResources().getString(id);
+       return tela.getResources().getString(id);
+   }
+
+   public void rodarNaUI(Runnable codigo) {
+       tela.runOnUiThread(codigo);
    }
 
 }
