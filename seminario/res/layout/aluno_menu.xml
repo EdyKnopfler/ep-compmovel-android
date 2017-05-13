@@ -21,5 +21,18 @@
        android:layout_height="wrap_content"
        android:text="@string/seminarios_assisti"
        android:onClick="seminariosQueAssisti"
+       />
+   <Button
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:text="@string/comprovar_presenca_bluetooth"
+       android:onClick="comprovarPresencaBlueTooth"
    />
+   <Button
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:text="@string/comprovar_presenca_qr_code"
+       android:onClick="comprovarPresencaQRCode"
+   />
+
 </LinearLayout>
