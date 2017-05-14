@@ -120,19 +120,6 @@ public class SeminarioProfMenu extends Activity {
                     finish();
                 }
             }).post("seminar/delete", data, true);
-
-            /*
-            try {
-                String url = Consts.SERVIDOR + "seminar/delete";
-                String json = HttpRequest.post(url).form(data).body();
-                JSONObject token = new JSONObject(json);
-
-                if (token.getString("success").equals("true"))
-                    finish();
-            } catch (Exception e) {
-                Log.d(LOG, "Erro: ", e);
-            }
-            */
         }
     }
 

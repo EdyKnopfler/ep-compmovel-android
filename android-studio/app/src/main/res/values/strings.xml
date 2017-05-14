@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">AppSeminários</string>
+    <string name="app_name">Seminários</string>
     <string name="bluetooth_nao_detect">Hardware Bluetooth não detectado...</string>
     <string name="celular_prof">O celular do professor está por perto?</string>
     <string name="receber_confirm_op">Receber Confirmações por Bluetooth.</string>
@@ -56,7 +56,6 @@
     <string name="seminarios_assisti">Seminários que assisti</string>
     <string name="falha_conexao">Falha na conexão</string>
     <string name="salvo_cache">Os dados foram guardados para envio quando o app for reinicializado.</string>
-    <string name="enviando_cache">Enviando dados guardados...</string>
     <string name="cache_enviado">Dados guardados localmente foram enviados com sucesso.</string>
     <string name="gerar_qr_code">Gerar Qr Code</string>
     <string name="ok">OK</string>

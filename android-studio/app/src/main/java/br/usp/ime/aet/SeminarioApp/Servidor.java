@@ -1,3 +1,6 @@
+// Referência:
+// https://github.com/joaobmonteiro/livro-android/blob/master/06-TwitterSearch-1/src/br/com/casadocodigo/twittersearch/TwitterSearchActivity.java
+
 package br.usp.ime.aet.SeminarioApp;
 
 import com.github.kevinsawicki.http.HttpRequest;
@@ -48,6 +51,7 @@ public class Servidor {
         new Thread(new Runnable() {
             @Override
             public void run() {
+                ui.mostrarLoading();
                 try {
                     String json = HttpRequest.get(Consts.SERVIDOR + url).body();
                     chamarCallback(new JSONObject(json));
@@ -55,6 +59,7 @@ public class Servidor {
                 catch (Exception ex) {
                     ui.mensagemSimples("", ui.pegarString(R.string.falha_conexao));
                 }
+                ui.fecharLoading();
             }
         }).start();
     }
@@ -64,6 +69,7 @@ public class Servidor {
         new Thread(new Runnable() {
             @Override
             public void run() {
+                ui.mostrarLoading();
                 try {
                     String json = HttpRequest.post(Consts.SERVIDOR + url).form(params).body();
                     chamarCallback(new JSONObject(json));
@@ -74,9 +80,11 @@ public class Servidor {
                         ui.mensagemSimples(ui.pegarString(R.string.falha_conexao),
                                 ui.pegarString(R.string.salvo_cache));
                     }
-                    else
+                    else {
                         ui.mensagemSimples("", ui.pegarString(R.string.falha_conexao));
+                    }
                 }
+                ui.fecharLoading();
             }
         }).start();
     }

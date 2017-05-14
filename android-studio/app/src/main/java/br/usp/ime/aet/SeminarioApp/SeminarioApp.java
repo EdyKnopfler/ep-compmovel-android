@@ -1,3 +1,6 @@
+// Referência:
+// https://github.com/joaobmonteiro/livro-android/blob/master/06-TwitterSearch-1/src/br/com/casadocodigo/twittersearch/TwitterSearchActivity.java
+
 package br.usp.ime.aet.SeminarioApp;
 
 import android.app.Activity;
@@ -12,63 +15,55 @@ import android.app.AlertDialog;
 
 public class SeminarioApp extends Activity {
 
-   private Cache cache;
+    private Cache cache;
+    private ComunicacaoThreadUI ui;
 
-   @Override
-   public void onCreate(Bundle savedInstanceState) {
-      super.onCreate(savedInstanceState);
-      setContentView(R.layout.main);
-      cache = new Cache(this);
-      new Reenvio().execute();
-   }
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.main);
+        cache = new Cache(this);
+        ui = new ComunicacaoThreadUI(this);
+        new Reenvio().start();
+    }
 
-   public void pagLogin(View v) {
-      Intent i = new Intent(this, LoginActivity.class);
+    public void pagLogin(View v) {
+        Intent i = new Intent(this, LoginActivity.class);
 
-      if (v == findViewById(R.id.professor)) i.putExtra("tipo", "prof");
-      else i.putExtra("tipo", "aluno");
+        if (v == findViewById(R.id.professor)) i.putExtra("tipo", "prof");
+        else i.putExtra("tipo", "aluno");
 
-      startActivity(i);
-   }
+        startActivity(i);
+    }
 
-   private class Reenvio extends AsyncTask<String, Void, String> {
-      @Override
-      protected String doInBackground(String ... params) {
-         boolean reenviouAlgo = false;
-         ArrayList<Cache.PostPendente> posts = cache.postsPendentes();
-         if (posts.size() == 0) return null;
+    private class Reenvio extends Thread {
+        @Override
+        public void run() {
+            boolean reenviouAlgo = false;
+            ArrayList<Cache.PostPendente> posts = cache.postsPendentes();
+            if (posts.size() == 0) return;
 
-         try {
-             for (Cache.PostPendente p : posts) {
-               String json = HttpRequest.post(Consts.SERVIDOR + p.url).form(p.params).body();
-               JSONObject token = new JSONObject(json);
-               reenviouAlgo = token.getString("success").equals("true");
-               // Não tentaremos reenviar coisas que deram erro no servidor
-               // (ex.: NUSP já cadastrado)
-               cache.remover(p.strParams);
+            ui.mostrarLoading();
+            try {
+                for (Cache.PostPendente p : posts) {
+                    String json = HttpRequest.post(Consts.SERVIDOR + p.url).form(p.params).body();
+                    JSONObject token = new JSONObject(json);
+                    reenviouAlgo = token.getString("success").equals("true");
+                    // Não tentaremos reenviar coisas que deram erro no servidor
+                    // (ex.: NUSP já cadastrado)
+                    cache.remover(p.strParams);
+                }
+
+                if (reenviouAlgo)
+                    ui.mensagemSimples("", ui.pegarString(R.string.cache_enviado));
             }
-
-            if (reenviouAlgo) {
-               runOnUiThread(new Runnable() {
-                  @Override
-                  public void run() {
-                     AlertDialog.Builder alert = new AlertDialog.Builder(SeminarioApp.this);
-         				alert.setTitle("Cache Enviado");
-         				alert.setMessage(getResources().getString(R.string.cache_enviado));
-         				alert.setPositiveButton("OK", null);
-         				alert.show();
-                  }
-               });
+            catch (Exception e) {
+                // Pode ignorar? afinal, bastaria manter no cache para os
+                // próximos envios
+                e.printStackTrace();
             }
-         }
-         catch (Exception e) {
-            // Pode ignorar? afinal, bastaria manter no cache para os
-            // próximos envios
-             e.printStackTrace();
-         }
-
-         return null;
-      }
-   }
+            ui.fecharLoading();
+        }
+    }
 
 }

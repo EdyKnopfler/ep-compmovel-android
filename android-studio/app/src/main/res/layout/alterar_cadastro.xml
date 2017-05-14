@@ -17,20 +17,7 @@
       android:inputType="text"
    />
    
-   <TextView 
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:text="@string/nusp"
-   />
-
-   <EditText
-      android:id="@+id/nusp"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:inputType="text"
-   />
-      
-   <TextView 
+   <TextView
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:text="@string/password"

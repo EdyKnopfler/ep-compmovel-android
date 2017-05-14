@@ -3,16 +3,12 @@ package br.usp.ime.aet.SeminarioApp;
 import android.app.Activity;
 import android.widget.ListView;
 import android.widget.ArrayAdapter;
-
 import java.util.HashMap;
-
 import android.os.Bundle;
 import android.content.Intent;
 import android.view.View;
 import android.widget.AdapterView;
-
 import static android.widget.AdapterView.OnItemClickListener;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONException;
@@ -56,7 +52,8 @@ public class ListarSeminarios extends Activity implements OnItemClickListener {
                     seminarios.put(name, id);
                     adapter.add(name);
                 }
-            } catch (JSONException e) {
+            }
+            catch (JSONException e) {
                 e.printStackTrace();
             }
         }
@@ -68,14 +65,10 @@ public class ListarSeminarios extends Activity implements OnItemClickListener {
         Intent i;
         if (tipo.equals("prof")) {
             i = new Intent(this, SeminarioProfMenu.class);
+            i.putExtra("id", seminarios.get(nomeSem));
+            i.putExtra("nome", nomeSem);
+            startActivityForResult(i, ALTERACAO_SEMINARIO);
         }
-        else {
-            i = new Intent(this, SeminarioAlunoMenu.class);
-            i.putExtra("nusp", getIntent().getStringExtra("nusp"));
-        }
-        i.putExtra("id", seminarios.get(nomeSem));
-        i.putExtra("nome", nomeSem);
-        startActivityForResult(i, ALTERACAO_SEMINARIO);
     }
 
     @Override
