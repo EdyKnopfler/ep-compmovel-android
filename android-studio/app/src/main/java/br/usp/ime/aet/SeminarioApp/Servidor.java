@@ -91,9 +91,6 @@ public class Servidor {
         }).execute();
     }
 
-
-
-
     private void chamarCallback(final JSONObject resposta) {
         ui.rodarNaUI(new Runnable() {
             @Override
