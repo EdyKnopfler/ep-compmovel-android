@@ -3,6 +3,7 @@
 
 package br.usp.ime.aet.SeminarioApp;
 
+import android.os.AsyncTask;
 import com.github.kevinsawicki.http.HttpRequest;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -48,9 +49,9 @@ public class Servidor {
     }
 
     public void get(final String url) {
-        new Thread(new Runnable() {
+        (new AsyncTask<Void, Void, Void>() {
             @Override
-            public void run() {
+            protected Void doInBackground(Void... xxxx) {
                 ui.mostrarLoading();
                 try {
                     String json = HttpRequest.get(Consts.SERVIDOR + url).body();
@@ -60,15 +61,16 @@ public class Servidor {
                     ui.mensagemSimples("", ui.pegarString(R.string.falha_conexao));
                 }
                 ui.fecharLoading();
+                return null;
             }
-        }).start();
+        }).execute();
     }
 
     public void post(final String url, final HashMap<String, String> params,
                      final boolean fazerCache) {
-        new Thread(new Runnable() {
+        (new AsyncTask<Void, Void, Void>() {
             @Override
-            public void run() {
+            protected Void doInBackground(Void... xxxx) {
                 ui.mostrarLoading();
                 try {
                     String json = HttpRequest.post(Consts.SERVIDOR + url).form(params).body();
@@ -80,14 +82,17 @@ public class Servidor {
                         ui.mensagemSimples(ui.pegarString(R.string.falha_conexao),
                                 ui.pegarString(R.string.salvo_cache));
                     }
-                    else {
+                    else
                         ui.mensagemSimples("", ui.pegarString(R.string.falha_conexao));
-                    }
                 }
                 ui.fecharLoading();
+                return null;
             }
-        }).start();
+        }).execute();
     }
+
+
+
 
     private void chamarCallback(final JSONObject resposta) {
         ui.rodarNaUI(new Runnable() {
