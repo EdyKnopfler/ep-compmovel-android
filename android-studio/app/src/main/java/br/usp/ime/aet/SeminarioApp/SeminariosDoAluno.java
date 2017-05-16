@@ -1,6 +1,5 @@
 package br.usp.ime.aet.SeminarioApp;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.widget.ListView;
 import android.widget.ArrayAdapter;
@@ -9,7 +8,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONArray;
 
-public class SeminariosDoAluno extends Activity {
+public class SeminariosDoAluno extends BaseActivity {
 
     private ListView lista;
     private ArrayAdapter adapter;
@@ -27,8 +26,8 @@ public class SeminariosDoAluno extends Activity {
     private void listar(String nusp) {
         HashMap<String, String> fm = new HashMap<String, String>();
         fm.put("nusp", nusp);
-        new Servidor(this, new Seminarios())
-                .post("attendence/listSeminars", fm, false);
+        servidor.setCallback(new Seminarios());
+        servidor.post("attendence/listSeminars", fm, false);
     }
 
     private class Seminarios extends Servidor.Callback {
@@ -39,8 +38,8 @@ public class SeminariosDoAluno extends Activity {
                 JSONArray data = resposta.getJSONArray("data");
                 for (int j = 0; j < data.length(); j++){
                     String idSem = data.getJSONObject(j).getString("seminar_id");
-                    new Servidor(SeminariosDoAluno.this, new DadosSeminario())
-                            .get("seminar/get/" + idSem);
+                    servidor.setCallback(new DadosSeminario());
+                    servidor.get("seminar/get/" + idSem);
                 }
             }
             catch (JSONException e) {

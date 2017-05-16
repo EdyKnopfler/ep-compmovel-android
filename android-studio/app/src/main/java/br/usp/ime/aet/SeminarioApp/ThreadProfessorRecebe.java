@@ -46,15 +46,16 @@ public class ThreadProfessorRecebe extends Thread {
         params.put("nusp", nusp);
         params.put("seminar_id", idSeminario);
         String url = "attendence/submit";
-
-        new Servidor(ui.getTela(), new Servidor.Callback() {
+        Servidor serv = ((ProfessorConfirmBluetooth) ui.getTela()).servidor;
+        serv.setCallback(new Servidor.Callback() {
             @Override
             void sucesso() {
                 ui.mensagemSimples(ui.pegarString(R.string.conf_pres_titulo),
                         ui.pegarString(R.string.conf_pres_nusp) + " " + nusp + " " +
                                 ui.pegarString(R.string.conf_sucesso) + "!");
             }
-        }).post(url, params, true);
+        });
+        serv.post(url, params, true);
     }
 
 }

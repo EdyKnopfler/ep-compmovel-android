@@ -11,7 +11,7 @@ import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static android.support.test.espresso.action.ViewActions.typeText;
-import static android.support.test.espresso.intent.Intents.intended;
+import static android.support.test.espresso.intent.Intents.intending;
 import static android.support.test.espresso.intent.matcher.IntentMatchers.hasComponent;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static junit.framework.Assert.fail;
@@ -49,7 +49,7 @@ public class LoginTest {
     @Test
     public void loginProfessorSucesso() {
         configura("true", "prof");
-        intended(hasComponent(MenuProf.class.getName()));
+        intending(hasComponent(MenuProf.class.getName()));
     }
 
     @Test
@@ -58,7 +58,7 @@ public class LoginTest {
 
         // A tela NÃO deve abrir
         try {
-            intended(hasComponent(MenuProf.class.getName()));
+            intending(hasComponent(MenuProf.class.getName()));
             fail();
         }
         catch (Error e) {}
@@ -67,7 +67,7 @@ public class LoginTest {
     @Test
     public void loginAlunoSucesso() {
         configura("true", "aluno");
-        intended(hasComponent(MenuAluno.class.getName()));
+        intending(hasComponent(MenuAluno.class.getName()));
     }
 
     @Test
@@ -76,7 +76,7 @@ public class LoginTest {
 
         // A tela NÃO deve abrir
         try {
-            intended(hasComponent(MenuAluno.class.getName()));
+            intending(hasComponent(MenuAluno.class.getName()));
             fail();
         }
         catch (Error e) {}

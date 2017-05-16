@@ -21,13 +21,23 @@ public class Cache {
     }
 
     private SharedPreferences config;
+    private HashMap<String, String> params;
+    private String url;
 
     public Cache(Context context) {
         this.config = context.getSharedPreferences(
                 "br.usp.ime.aet.SeminarioApp.CACHE", Context.MODE_PRIVATE);
     }
 
-    public void salvar(HashMap<String, String> params, String url) {
+    public void setParams(HashMap<String, String> params) {
+        this.params = params;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public void salvar() {
         try {
             SharedPreferences.Editor editor = config.edit();
             editor.putString(urlEncode(params), url);

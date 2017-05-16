@@ -1,13 +1,12 @@
 package br.usp.ime.aet.SeminarioApp;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.widget.EditText;
 import android.view.View;
 import java.util.HashMap;
 import android.app.AlertDialog;
 
-public class CadastroUsuario extends Activity {
+public class CadastroUsuario extends BaseActivity {
 	private EditText e_nusp, e_pass, e_name;
 	private String nusp, pass, name, url;
 
@@ -35,7 +34,8 @@ public class CadastroUsuario extends Activity {
 		data.put("pass", pass);
 		data.put("name", name);
 
-		new Servidor(this, new Resposta()).post(url, data, true);
+		servidor.setCallback(new Resposta());
+		servidor.post(url, data, true);
 	}
 
 	private class Resposta extends Servidor.Callback {

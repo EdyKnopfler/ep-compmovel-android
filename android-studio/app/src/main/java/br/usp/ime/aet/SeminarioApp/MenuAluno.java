@@ -12,7 +12,7 @@ import android.content.Intent;
 import android.app.AlertDialog;
 import java.util.HashMap;
 
-public class MenuAluno extends Activity {
+public class MenuAluno extends BaseActivity {
     private String nusp, idSem;
 
     @Override
@@ -77,7 +77,8 @@ public class MenuAluno extends Activity {
         HashMap<String, String> params = new HashMap<String, String>();
         params.put("nusp", nusp);
         params.put("seminar_id", idSem);
-        new Servidor(this, new Resposta()).post("attendence/submit", params, true);
+        servidor.setCallback(new Resposta());
+        servidor.post("attendence/submit", params, true);
     }
 
     private class Resposta extends Servidor.Callback {

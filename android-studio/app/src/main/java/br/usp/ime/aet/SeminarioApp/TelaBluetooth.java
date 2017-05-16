@@ -9,7 +9,7 @@ import android.os.Bundle;
 import android.widget.Toast;
 import android.content.Intent;
 
-public abstract class TelaBluetooth extends Activity {
+public abstract class TelaBluetooth extends BaseActivity {
 
     private static final int ACAO_HABILITAR = 1;
 

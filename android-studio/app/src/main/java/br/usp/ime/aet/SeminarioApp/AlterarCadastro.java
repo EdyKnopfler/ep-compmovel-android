@@ -1,6 +1,5 @@
 package br.usp.ime.aet.SeminarioApp;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.widget.EditText;
 import android.view.View;
@@ -9,7 +8,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import android.app.AlertDialog;
 
-public class AlterarCadastro extends Activity {
+public class AlterarCadastro extends BaseActivity {
     private EditText e_pass, e_name;
     private String tipo, nusp, pass, name;
 
@@ -26,7 +25,8 @@ public class AlterarCadastro extends Activity {
             url = "teacher/get/";
         else
             url = "student/get/";
-        new Servidor(this, new RespostaGet()).get(url + nusp);
+        servidor.setCallback(new RespostaGet());
+        servidor.get(url + nusp);
     }
 
     private class RespostaGet extends Servidor.Callback {
@@ -57,7 +57,8 @@ public class AlterarCadastro extends Activity {
         data.put("pass", pass);
         data.put("name", name);
 
-        new Servidor(this, new RespostaPost()).post(url, data, true);
+        servidor.setCallback(new RespostaPost());
+        servidor.post(url, data, true);
     }
 
     private class RespostaPost extends Servidor.Callback {

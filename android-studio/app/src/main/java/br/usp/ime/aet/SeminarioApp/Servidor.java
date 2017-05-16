@@ -38,17 +38,26 @@ public class Servidor {
     private AcessoWeb acessoWeb;
     private Callback callback;
     private ComunicacaoThreadUI ui;
+    private Cache cache;
 
-    public Servidor(Activity tela, Callback callback) {
-        this.callback = callback;
+    public Servidor(Activity tela) {
         this.ui = new ComunicacaoThreadUI(tela);
-        this.callback.setUi(ui);
-        this.acessoWeb = new AcessoWeb();
+        this.acessoWeb = new AcessoWeb();  // Padrão, não é fake!
+        cache = new Cache(ui.getTela());
+    }
+
+    public void setCallback(Callback callback) {
+        this.callback = callback;
+        callback.setUi(ui);
     }
 
     /** Aqui permitimos a entrada de um mock do AcessoWeb :) */
     public void setAcessoWeb(AcessoWeb acesso) {
         this.acessoWeb = acesso;
+    }
+
+    public void setCache(Cache cache) {
+        this.cache = cache;
     }
 
     public void get(final String url) {
@@ -84,7 +93,9 @@ public class Servidor {
                 }
                 catch (Exception ex) {
                     if (fazerCache) {
-                        new Cache(ui.getTela()).salvar(params, url);
+                        cache.setParams(params);
+                        cache.setUrl(url);
+                        cache.salvar();
                         ui.mensagemSimples(ui.pegarString(R.string.falha_conexao),
                                 ui.pegarString(R.string.salvo_cache));
                     }

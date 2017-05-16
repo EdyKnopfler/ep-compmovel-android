@@ -1,6 +1,5 @@
 package br.usp.ime.aet.SeminarioApp;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.content.Intent;
@@ -14,7 +13,7 @@ import org.json.JSONArray;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 
-public class SeminarioProfMenu extends Activity {
+public class SeminarioProfMenu extends BaseActivity {
 
     private static final int ALTERACAO_SEMINARIO = 222;
 
@@ -40,7 +39,8 @@ public class SeminarioProfMenu extends Activity {
     private void listarAlunos() {
         HashMap<String, String> fm = new HashMap<String, String>();
         fm.put("seminar_id", id);
-        new Servidor(this, new ListaEstudantes()).post("attendence/listStudents", fm, false);
+        servidor.setCallback(new ListaEstudantes());
+        servidor.post("attendence/listStudents", fm, false);
     }
 
     private class ListaEstudantes extends Servidor.Callback {
@@ -51,8 +51,8 @@ public class SeminarioProfMenu extends Activity {
                 JSONArray data = resposta.getJSONArray("data");
                 for (int j = 0; j < data.length(); j++) {
                     String nusp = data.getJSONObject(j).getString("student_nusp");
-                    new Servidor(SeminarioProfMenu.this, new DadosEstudante())
-                            .get("student/get/" + nusp);
+                    servidor.setCallback(new DadosEstudante());
+                    servidor.get("student/get/" + nusp);
                 }
             }
             catch (JSONException e) {
@@ -114,12 +114,13 @@ public class SeminarioProfMenu extends Activity {
         public void onClick(DialogInterface dialog, int which) {
             HashMap<String, String> data = new HashMap<String, String>();
             data.put("id", id);
-            new Servidor(SeminarioProfMenu.this, new Servidor.Callback() {
+            servidor.setCallback(new Servidor.Callback() {
                 @Override
                 void sucesso() {
                     finish();
                 }
-            }).post("seminar/delete", data, true);
+            });
+            servidor.post("seminar/delete", data, true);
         }
     }
 

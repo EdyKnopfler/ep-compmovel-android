@@ -13,7 +13,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONException;
 
-public class ListarSeminarios extends Activity implements OnItemClickListener {
+public class ListarSeminarios extends BaseActivity implements OnItemClickListener {
 
     private final static int ALTERACAO_SEMINARIO = 222;
 
@@ -38,7 +38,8 @@ public class ListarSeminarios extends Activity implements OnItemClickListener {
 
     private void listar() {
         adapter.clear();
-        new Servidor(this, new Resposta()).get("seminar");
+        servidor.setCallback(new Resposta());
+        servidor.get("seminar");
     }
 
     private class Resposta extends Servidor.Callback {

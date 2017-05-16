@@ -9,7 +9,7 @@ import java.util.HashMap;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 
-public class CadastroSeminario extends Activity {
+public class CadastroSeminario extends BaseActivity {
 	private EditText e_name;
 	private String id, name;
 
@@ -36,7 +36,8 @@ public class CadastroSeminario extends Activity {
 		else
 			url = "seminar/add";
 
-		new Servidor(this, new Resposta()).post(url, data, true);
+		servidor.setCallback(new Resposta());
+		servidor.post(url, data, true);
 	}
 
 	private class Resposta extends Servidor.Callback {
