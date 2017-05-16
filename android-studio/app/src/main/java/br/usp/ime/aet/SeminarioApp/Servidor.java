@@ -1,17 +1,13 @@
-// Referência:
-// https://github.com/joaobmonteiro/livro-android/blob/master/06-TwitterSearch-1/src/br/com/casadocodigo/twittersearch/TwitterSearchActivity.java
-
 package br.usp.ime.aet.SeminarioApp;
 
 import android.os.AsyncTask;
-import com.github.kevinsawicki.http.HttpRequest;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.HashMap;
 import android.app.Activity;
 
 /**
- * Tratamos aqui todos os detalhes das respostas do servidor, que não seguem um padrão muito bem
+ * Tratamos aqui todos os detalhes das respostas do acessoWeb, que não seguem um padrão muito bem
  * definido...
  */
 public class Servidor {
@@ -39,6 +35,7 @@ public class Servidor {
 
     }
 
+    private AcessoWeb acessoWeb;
     private Callback callback;
     private ComunicacaoThreadUI ui;
 
@@ -46,6 +43,12 @@ public class Servidor {
         this.callback = callback;
         this.ui = new ComunicacaoThreadUI(tela);
         this.callback.setUi(ui);
+        this.acessoWeb = new AcessoWeb();
+    }
+
+    /** Aqui permitimos a entrada de um mock do AcessoWeb :) */
+    public void setAcessoWeb(AcessoWeb acesso) {
+        this.acessoWeb = acesso;
     }
 
     public void get(final String url) {
@@ -54,7 +57,8 @@ public class Servidor {
             protected Void doInBackground(Void... xxxx) {
                 ui.mostrarLoading();
                 try {
-                    String json = HttpRequest.get(Consts.SERVIDOR + url).body();
+                    acessoWeb.setUrl(Consts.SERVIDOR + url);
+                    String json = acessoWeb.get();
                     chamarCallback(new JSONObject(json));
                 }
                 catch (Exception ex) {
@@ -73,7 +77,9 @@ public class Servidor {
             protected Void doInBackground(Void... xxxx) {
                 ui.mostrarLoading();
                 try {
-                    String json = HttpRequest.post(Consts.SERVIDOR + url).form(params).body();
+                    acessoWeb.setParams(params);
+                    acessoWeb.setUrl(Consts.SERVIDOR + url);
+                    String json = acessoWeb.post();
                     chamarCallback(new JSONObject(json));
                 }
                 catch (Exception ex) {

@@ -10,7 +10,8 @@ import android.app.AlertDialog;
 
 public class LoginActivity extends Activity {
 	private EditText e_nusp, e_pass;
-	private String nusp, pass, name, url;
+	private String nusp, pass, url;
+	private Servidor servidor;
 
 	@Override
 	public void onCreate(Bundle state) {
@@ -18,9 +19,15 @@ public class LoginActivity extends Activity {
 		setContentView(R.layout.login);
 		e_nusp = (EditText) findViewById(R.id.nusp);
 		e_pass = (EditText) findViewById(R.id.password);
+        servidor = new Servidor(this, new RespostaLogin());
 	}
 
-	public void confirmarClick(View view) {
+    /** Permitir a injeção de mocks */
+    public void setAcessoWeb(AcessoWeb acessoWeb) {
+        servidor.setAcessoWeb(acessoWeb);
+    }
+
+    public void confirmarClick(View view) {
 		nusp = e_nusp.getText().toString();
 		pass = e_pass.getText().toString();
 
@@ -43,10 +50,10 @@ public class LoginActivity extends Activity {
 		HashMap<String, String> data = new HashMap<String, String>();
 		data.put("nusp", nusp);
 		data.put("pass", pass);
-		new Servidor(this, new RespostaLogin()).post(url, data, false);
+        servidor.post(url, data, false);
 	}
 
-	private class RespostaLogin extends Servidor.Callback {
+    private class RespostaLogin extends Servidor.Callback {
 
 		@Override
 		void sucesso() {
