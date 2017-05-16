@@ -42,16 +42,30 @@ public class ThreadProfessorRecebe extends Thread {
             return;
         }
 
-        final String nusp = new String(bDados);
+        String nusp = new String(bDados);
         HashMap<String, String> params = new HashMap<String, String>();
         params.put("nusp", nusp);
         params.put("seminar_id", idSeminario);
         String url = "attendence/submit";
-        ui.mensagemSimples(ui.pegarString(R.string.conf_pres_titulo),
-                ui.pegarString(R.string.conf_pres_nusp) + " " + nusp + " " +
-                        ui.pegarString(R.string.conf_sucesso) + "!");
-        ProfessorConfirmBluetooth tela = (ProfessorConfirmBluetooth) ui.getTela();
-        tela.post(url, params, true);
+
+        AcessoWeb acessoWeb = new AcessoWeb();
+        acessoWeb.setUrl(Consts.SERVIDOR + url);
+        acessoWeb.setParams(params);
+
+        try {
+            acessoWeb.post();
+            ui.mensagemSimples(ui.pegarString(R.string.conf_pres_titulo),
+                    ui.pegarString(R.string.conf_pres_nusp) + " " + nusp + " " +
+                            ui.pegarString(R.string.conf_sucesso) + "!");
+        }
+        catch (Exception ex) {
+            Cache cache = new Cache(ui.getTela());
+            cache.setParams(params);
+            cache.setUrl(url);
+            cache.salvar();
+            ui.mensagemSimples(ui.pegarString(R.string.falha_conexao),
+                    ui.pegarString(R.string.salvo_cache));
+        }
     }
 
 }
