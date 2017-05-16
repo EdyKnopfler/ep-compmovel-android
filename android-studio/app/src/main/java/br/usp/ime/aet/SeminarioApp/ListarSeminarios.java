@@ -38,11 +38,11 @@ public class ListarSeminarios extends BaseActivity implements OnItemClickListene
 
     private void listar() {
         adapter.clear();
-        servidor.setCallback(new Resposta());
-        servidor.get("seminar");
+        setCallback(new Resposta());
+        get("seminar");
     }
 
-    private class Resposta extends Servidor.Callback {
+    private class Resposta extends Callback {
         @Override
         void sucesso(JSONObject resposta) {
             try {

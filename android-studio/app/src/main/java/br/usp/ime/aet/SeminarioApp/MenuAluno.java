@@ -77,11 +77,11 @@ public class MenuAluno extends BaseActivity {
         HashMap<String, String> params = new HashMap<String, String>();
         params.put("nusp", nusp);
         params.put("seminar_id", idSem);
-        servidor.setCallback(new Resposta());
-        servidor.post("attendence/submit", params, true);
+        setCallback(new Resposta());
+        post("attendence/submit", params, true);
     }
 
-    private class Resposta extends Servidor.Callback {
+    private class Resposta extends Callback {
         @Override
         void sucesso() {
             showDialog(R.string.sucesso, getString(R.string.conf_sucesso));

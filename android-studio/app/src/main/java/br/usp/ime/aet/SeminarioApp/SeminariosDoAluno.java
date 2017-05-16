@@ -26,11 +26,11 @@ public class SeminariosDoAluno extends BaseActivity {
     private void listar(String nusp) {
         HashMap<String, String> fm = new HashMap<String, String>();
         fm.put("nusp", nusp);
-        servidor.setCallback(new Seminarios());
-        servidor.post("attendence/listSeminars", fm, false);
+        setCallback(new Seminarios());
+        post("attendence/listSeminars", fm, false);
     }
 
-    private class Seminarios extends Servidor.Callback {
+    private class Seminarios extends Callback {
         @Override
         void sucesso(JSONObject resposta) {
             try {
@@ -38,8 +38,8 @@ public class SeminariosDoAluno extends BaseActivity {
                 JSONArray data = resposta.getJSONArray("data");
                 for (int j = 0; j < data.length(); j++){
                     String idSem = data.getJSONObject(j).getString("seminar_id");
-                    servidor.setCallback(new DadosSeminario());
-                    servidor.get("seminar/get/" + idSem);
+                    setCallback(new DadosSeminario());
+                    get("seminar/get/" + idSem);
                 }
             }
             catch (JSONException e) {
@@ -48,7 +48,7 @@ public class SeminariosDoAluno extends BaseActivity {
         }
     }
 
-    private class DadosSeminario extends Servidor.Callback {
+    private class DadosSeminario extends Callback {
         @Override
         void sucesso(JSONObject resposta) {
             try {

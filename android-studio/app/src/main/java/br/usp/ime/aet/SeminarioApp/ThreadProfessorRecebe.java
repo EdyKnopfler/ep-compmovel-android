@@ -4,6 +4,7 @@
 package br.usp.ime.aet.SeminarioApp;
 
 import android.bluetooth.BluetoothSocket;
+import com.github.kevinsawicki.http.HttpRequest;
 import java.io.InputStream;
 import java.io.IOException;
 import java.util.HashMap;
@@ -46,16 +47,11 @@ public class ThreadProfessorRecebe extends Thread {
         params.put("nusp", nusp);
         params.put("seminar_id", idSeminario);
         String url = "attendence/submit";
-        Servidor serv = ((ProfessorConfirmBluetooth) ui.getTela()).servidor;
-        serv.setCallback(new Servidor.Callback() {
-            @Override
-            void sucesso() {
-                ui.mensagemSimples(ui.pegarString(R.string.conf_pres_titulo),
-                        ui.pegarString(R.string.conf_pres_nusp) + " " + nusp + " " +
-                                ui.pegarString(R.string.conf_sucesso) + "!");
-            }
-        });
-        serv.post(url, params, true);
+        ui.mensagemSimples(ui.pegarString(R.string.conf_pres_titulo),
+                ui.pegarString(R.string.conf_pres_nusp) + " " + nusp + " " +
+                        ui.pegarString(R.string.conf_sucesso) + "!");
+        ProfessorConfirmBluetooth tela = (ProfessorConfirmBluetooth) ui.getTela();
+        tela.post(url, params, true);
     }
 
 }

@@ -3,6 +3,7 @@
 
 package br.usp.ime.aet.SeminarioApp;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
@@ -20,6 +21,7 @@ public class ProfessorConfirmBluetooth extends TelaBluetooth {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.prof_confirm_bluetooth);
         idSeminario = getIntent().getStringExtra("id_seminario");
+        setCallback(new Callback());  // Não deixar escapar erros
     }
 
     @Override

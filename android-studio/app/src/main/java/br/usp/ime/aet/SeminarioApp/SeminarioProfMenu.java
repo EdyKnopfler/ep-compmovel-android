@@ -39,11 +39,11 @@ public class SeminarioProfMenu extends BaseActivity {
     private void listarAlunos() {
         HashMap<String, String> fm = new HashMap<String, String>();
         fm.put("seminar_id", id);
-        servidor.setCallback(new ListaEstudantes());
-        servidor.post("attendence/listStudents", fm, false);
+        setCallback(new ListaEstudantes());
+        post("attendence/listStudents", fm, false);
     }
 
-    private class ListaEstudantes extends Servidor.Callback {
+    private class ListaEstudantes extends Callback {
         @Override
         void sucesso(JSONObject resposta) {
             try {
@@ -51,8 +51,8 @@ public class SeminarioProfMenu extends BaseActivity {
                 JSONArray data = resposta.getJSONArray("data");
                 for (int j = 0; j < data.length(); j++) {
                     String nusp = data.getJSONObject(j).getString("student_nusp");
-                    servidor.setCallback(new DadosEstudante());
-                    servidor.get("student/get/" + nusp);
+                    setCallback(new DadosEstudante());
+                    get("student/get/" + nusp);
                 }
             }
             catch (JSONException e) {
@@ -61,7 +61,7 @@ public class SeminarioProfMenu extends BaseActivity {
         }
     }
 
-    private class DadosEstudante extends Servidor.Callback {
+    private class DadosEstudante extends Callback {
         @Override
         void sucesso(JSONObject resposta) {
             try {
@@ -114,13 +114,13 @@ public class SeminarioProfMenu extends BaseActivity {
         public void onClick(DialogInterface dialog, int which) {
             HashMap<String, String> data = new HashMap<String, String>();
             data.put("id", id);
-            servidor.setCallback(new Servidor.Callback() {
+            setCallback(new Callback() {
                 @Override
                 void sucesso() {
                     finish();
                 }
             });
-            servidor.post("seminar/delete", data, true);
+            post("seminar/delete", data, true);
         }
     }
 

@@ -25,11 +25,11 @@ public class AlterarCadastro extends BaseActivity {
             url = "teacher/get/";
         else
             url = "student/get/";
-        servidor.setCallback(new RespostaGet());
-        servidor.get(url + nusp);
+        setCallback(new RespostaGet());
+        get(url + nusp);
     }
 
-    private class RespostaGet extends Servidor.Callback {
+    private class RespostaGet extends Callback {
         @Override
         void sucesso(JSONObject resposta) {
             try {
@@ -57,11 +57,11 @@ public class AlterarCadastro extends BaseActivity {
         data.put("pass", pass);
         data.put("name", name);
 
-        servidor.setCallback(new RespostaPost());
-        servidor.post(url, data, true);
+        setCallback(new RespostaPost());
+        post(url, data, true);
     }
 
-    private class RespostaPost extends Servidor.Callback {
+    private class RespostaPost extends Callback {
         @Override
         void sucesso() {
             AlertDialog.Builder alert = new AlertDialog.Builder(AlterarCadastro.this);

@@ -34,11 +34,11 @@ public class CadastroUsuario extends BaseActivity {
 		data.put("pass", pass);
 		data.put("name", name);
 
-		servidor.setCallback(new Resposta());
-		servidor.post(url, data, true);
+		setCallback(new Resposta());
+		post(url, data, true);
 	}
 
-	private class Resposta extends Servidor.Callback {
+	private class Resposta extends Callback {
 		@Override
 		void sucesso() {
 			AlertDialog.Builder alert = new AlertDialog.Builder(CadastroUsuario.this);

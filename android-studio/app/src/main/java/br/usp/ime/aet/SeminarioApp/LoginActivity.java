@@ -42,11 +42,11 @@ public class LoginActivity extends BaseActivity {
 		HashMap<String, String> data = new HashMap<String, String>();
 		data.put("nusp", nusp);
 		data.put("pass", pass);
-		servidor.setCallback(new RespostaLogin());
-		servidor.post(url, data, false);
+		setCallback(new RespostaLogin());
+		post(url, data, false);
 	}
 
-    private class RespostaLogin extends Servidor.Callback {
+    private class RespostaLogin extends Callback {
 
 		@Override
 		void sucesso() {
